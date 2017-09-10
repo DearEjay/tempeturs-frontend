@@ -26,3 +26,7 @@
 
 
     Run `npm run dev` to build and run the project's dev server.
+    
+## Notes
+
+    The structure of this repo is likely going to change as we learn more about good Node.js and React practices.
