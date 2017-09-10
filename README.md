@@ -29,4 +29,4 @@
     
 ## Notes
 
-    The structure of this repo is likely going to change as we learn more about good Node.js and React practices.
+The structure of this repo is likely going to change as we learn more about good Node.js and React practices.
