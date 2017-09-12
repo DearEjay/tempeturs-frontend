@@ -20,8 +20,8 @@ cache:
 
 build_dev:
     script:
-        -npm install
-        -npm run dev
+        - npm install
+        - npm run dev
 
 #test_async:
 #  script:
