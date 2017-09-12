@@ -25,6 +25,8 @@ build_dev:
         
 deploy_prod:
     script:
+        - apt-get update
+        - apt-get install ruby-dev
         - gem install dpl
         - dpl --provider=heroku --app=group-3-tempeturs-frontend --api-key="e55bcb4d-156a-478d-8f45-45f35940cd07"
 
