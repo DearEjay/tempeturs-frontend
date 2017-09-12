@@ -21,7 +21,7 @@ cache:
 build_dev:
     script:
         - npm install
-        - npm run dev
+        - npm run build
 
 #test_async:
 #  script:
