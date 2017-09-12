@@ -9,6 +9,7 @@ const root      = path.resolve(__dirname);
 const src       = path.join(root, 'src/main');
 const test      = path.join(root, 'src/test');
 const dest      = path.join(root, 'build');
+const htmlRoot  = path.join(root,'');
 
 let main = 'js/app.js';
 let libraryName = 'petfinder-site';
@@ -49,7 +50,7 @@ if(env === 'dev') {
 		hot: true,
 		port: port,
 		https: true,
-		contentBase: dest,
+		contentBase: htmlRoot,
 		publicPath: 'https://localhost:' + port + '/',
 		headers: {
 			'access-control-allow-origin': '*'
