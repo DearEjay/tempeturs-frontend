@@ -30,7 +30,7 @@ deploy_prod:
         - gem install dpl
         - npm install
         - npm run build-release
-        - dpl --provider=heroku --app=group-3-tempeturs-frontend --api-key=$MORGAN_API_KEY
+        - dpl --provider=heroku --app=group-3-tempeturs-frontend --api-key=$MORGAN_HEROKU_API_KEY
 
 #test_async:
 #  script:
