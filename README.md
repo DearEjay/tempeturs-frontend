@@ -29,4 +29,6 @@
     
 ## Notes
 
+When you push a commit, the project automatically tests a build and if it passes deploys to Heroku.
+
 The structure of this repo is likely going to change as we learn more about good Node.js and React practices.
