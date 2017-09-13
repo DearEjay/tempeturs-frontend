@@ -22,13 +22,22 @@
     
     Run `npm install` in the top level directory of the project (where `package.json` is) to install dependencies.
     
-4. Run the Project
+4. Build the Project
 
 
-    Run `npm run dev` to build and run the project's dev server.
+    Run `npm run build` to have webpack build its files.
+    
+    *Might change if I figure out a better way to serve files for the dev server without having to build first.
+    
+5. Run the Project
+
+
+    Run `npm run dev` to run the project's dev server.
     
 ## Notes
 
 When you push a commit, the project automatically tests a build and if it passes deploys to Heroku.
 
 The structure of this repo is likely going to change as we learn more about good Node.js and React practices.
+
+
