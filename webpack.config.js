@@ -50,7 +50,7 @@ if(env === 'dev') {
 		hot: true,
 		port: port,
 		https: true,
-		contentBase: dest,
+		contentBase: htmlRoot,
 		publicPath: 'https://localhost:' + port + '/',
 		headers: {
 			'access-control-allow-origin': '*'
