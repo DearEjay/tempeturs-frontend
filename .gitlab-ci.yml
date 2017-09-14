@@ -27,4 +27,4 @@ deploy_prod:
         - gem install dpl
         - dpl --provider=heroku --app=group-3-tempeturs-frontend --api-key=$MORGAN_HEROKU_API_KEY --skip_cleanup
     only:
-    - master
+        - master
