@@ -22,17 +22,27 @@
     
     Run `npm install` in the top level directory of the project (where `package.json` is) to install dependencies.
     
-4. Build the Project
+5. Run the Development Server
+
+
+    Run `npm run dev` to run the project's dev server.
+    
+    
+## To Test the Production Build
+
+1. Build the Project
 
 
     Run `npm run build` to have webpack build its files.
     
-    *Might change if I figure out a better way to serve files for the dev server without having to build first.
+2. Run the Production Server Locally
+
+    Run `npm run serve-prod` (Unix) to run the production server on your local machine.
     
-5. Run the Project
-
-
-    Run `npm run dev` to run the project's dev server.
+    If that doesn't work, run `node server.js` (Windows).
+    
+    Note that this is not creating the actual prod server on Heroku, that is done with CI.
+    
     
 ## Notes
 
