@@ -25,7 +25,7 @@ export class Register extends React.Component {
 		return (
 			<div className="container padded">
 				<p><Link to="/">Back</Link></p>
-				This is the registration page. 
+				This is the registration page. MY FAVE PAGE
 			</div>
 		);
 	}
