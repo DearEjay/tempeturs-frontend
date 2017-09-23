@@ -1,5 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'bootstrap';
+
+export class Menu extends React.Component {
+	render() {
+		return (
+			<Navbar>
+				HELLO
+				<Navbar.Header>
+					<Navbar.Brand>
+						TEMPETURS
+					</Navbar.Brand>
+				</Navbar.Header>
+				<Nav>
+					<NavItem eventKey={1} href="#">Link</NavItem>
+					<NavItem eventKey={2} href="#">Link</NavItem>
+				</Nav>
+			</Navbar>
+		);
+	}
+}
 
 export class Home extends React.Component {
 	render() {
@@ -14,6 +34,7 @@ export class Home extends React.Component {
 					<li><Link to="/booking">Booking</Link></li>
 					<li><Link to="/payment">Payment</Link></li>
 					<li><Link to="/help">Help</Link></li>
+					<li> nanananana </li>
 					</ul>
 			</div>
 		);

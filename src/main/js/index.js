@@ -1,13 +1,14 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 
-import { Home, Register, Login, Search, Detail, Booking, Payment, Help } from 'js/pages';
+import { Home, Register, Login, Search, Detail, Booking, Payment, Help, Menu } from 'js/pages';
 
 export default class Index extends React.Component {
 	render() {
 		return (
 			<HashRouter>
 				<div>
+					<Menu />
 					<Route exact path="/" component={Home} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/login" component={Login} />
