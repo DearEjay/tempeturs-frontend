@@ -1,7 +1,16 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 
-import { Home, Register, Login, Search, Detail, Booking, Payment, Help, Menu } from 'js/pages';
+import {Home} from 'js/pages/Home';
+import {Register} from 'js/pages/Register';
+import {Login} from 'js/pages/Login';
+import {Search} from 'js/pages/Search';
+import {Detail} from 'js/pages/Detail';
+import {Booking} from 'js/pages/Booking';
+import {Payment} from 'js/pages/Payment';
+import {Help} from 'js/pages/Help';
+import {Contact} from 'js/pages/Contact';
+import {Menu} from 'js/nav';
 
 export default class Index extends React.Component {
 	render() {
