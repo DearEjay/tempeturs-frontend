@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, MenuItem, Button, NavbarBrand } from 'react-bootstrap';
 
+
 export class Menu extends React.Component {
 	render() {
 		return (
@@ -24,13 +25,11 @@ export class Menu extends React.Component {
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
-						<form className='navbar-form' action="">
-							<input type='text' placeholder='email' />{' '}
-							<input type='text' placeholder='password' />{' '}
-							<Button bsStyle='success' type='submit'>Log in</Button>
-						</form>
+						
 					</Nav>
+					
 				</Navbar>
+				
 			</div>
 		);
 	}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {Menu} from 'js/nav';
-import {LoginModal} from 'js/components/LoginModal';
 import {Button } from 'react-bootstrap';
 import axios from 'axios';
+import {LoginModal} from 'js/components/LoginModal';
+
 
 export class Home extends React.Component {
 
@@ -17,7 +18,8 @@ export class Home extends React.Component {
 	}
 	
 	apiCall() {
-		const url = 'http://localhost:8080/api';
+		//const url = 'http://localhost:8080/api';
+		const url = 'http://group-3-tempeturs-backend.herokuapp.com/api';
 		// Make a request for a user with a given ID 
 			
 		axios.get(url+'/user/1')
@@ -48,8 +50,9 @@ export class Home extends React.Component {
 					<li><Link to="/help">Help</Link></li>
 				</ul>
 				<LoginModal/>
+				<br/>
 				<Button bsStyle="primary" bsSize="large" onClick={this.apiCall}>Make API Call</Button>
-				<p>API Call Return:<pre>{JSON.stringify(this.state.apiResult.data)}</pre></p>
+				<p>API Call Return:<pre>{JSON.stringify(this.state.apiResult.data, null, 2)}</pre></p>
 			</div>
 		);
 	}
