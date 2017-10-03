@@ -21,10 +21,10 @@ export class Menu extends React.Component {
 
 					</Nav> */}
 					<Nav right eventKey={0}>
-					<MenuItem eventKey={1} href="#">Link</MenuItem>
-					<MenuItem eventKey={1} href="#">Link</MenuItem>
-					<MenuItem eventKey={1} href="#">Link</MenuItem>
-					<form className='navbar-form' action="">
+						<MenuItem eventKey={1} href="#">Link</MenuItem>
+						<MenuItem eventKey={1} href="#">Link</MenuItem>
+						<MenuItem eventKey={1} href="#">Link</MenuItem>
+						<form className='navbar-form' action="">
 							<input type='text' placeholder='email' />{' '}
 							<input type='text' placeholder='password' />{' '}
 							<Button bsStyle='success' type='submit'>Log in</Button>

@@ -21,7 +21,7 @@
     "rules": {
         "indent": [
             "warn",
-            "tab", {
+            4, {
                 "SwitchCase": 1
             }
         ],
@@ -38,7 +38,7 @@
             "always"
         ],
         "no-unused-vars": "warn",
-        "no-console": "warn",
+        "no-console": "off",
         "no-class-assign": "off",
         "react/jsx-uses-vars": "error",
         "no-mixed-spaces-and-tabs": "off"
