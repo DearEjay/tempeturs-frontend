@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-import { Grid, Row, Col } from 'react-bootstrap';
-=======
 import {Menu} from 'js/nav';
 import {Button } from 'react-bootstrap';
 import axios from 'axios';
 import {LoginModal} from 'js/components/LoginModal';
 
->>>>>>> 81c29925fc04066cfafac2fdc5915b86098351cf
 
 export class Home extends React.Component {
 
