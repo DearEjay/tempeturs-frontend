@@ -1,12 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { Grid, Row, Col } from 'react-bootstrap';
+=======
+import {Menu} from 'js/nav';
+import {Button } from 'react-bootstrap';
+import axios from 'axios';
+import {LoginModal} from 'js/components/LoginModal';
+
+>>>>>>> 81c29925fc04066cfafac2fdc5915b86098351cf
 
 export class Home extends React.Component {
+
+	constructor(props) {
+        super(props);
+        
+		this.state = {
+            apiResult: {}
+        };
+        this.apiCall = this.apiCall.bind(this);
+	}
+	
+	apiCall() {
+		//const url = 'http://localhost:8080/api';
+		const url = 'http://group-3-tempeturs-backend.herokuapp.com/api';
+		// Make a request for a user with a given ID 
+			
+		axios.get(url+'/user/1')
+		.then( (response) => {
+			//console.log(response);
+			this.setState({ apiResult: response });
+		})
+		.catch( (response) => {
+			//console.log(response);
+			this.setState({ apiResult: response });
+		});
+
+		
+    }
+
 	render() {
 		return (
 			<div className="container padded">
-				Welcome to the updated home page! Hooray!
+				{<Menu />}
+				<h1>Welcome to the updated home page! Hooray!</h1>
 				<ul>
 					<li><Link to="/register">Register</Link></li>
 					<li><Link to="/login">Login</Link></li>
@@ -15,84 +52,11 @@ export class Home extends React.Component {
 					<li><Link to="/booking">Booking</Link></li>
 					<li><Link to="/payment">Payment</Link></li>
 					<li><Link to="/help">Help</Link></li>
-					<li> nanananana </li>
-					</ul>
-
-			</div>
-		);
-	}
-}
-
-export class OwnerDashboard extends React.Component {
-	render(){
-		return (
-			<div>
-			</div>
-		);
-	}
-}
-
-export class SitterDashboard extends React.Component {
-	render(){
-		return (
-			<div>
-			</div>
-		);
-	}
-}
-
-export class BothDashboard extends React.Component {
-	render(){
-		return (
-			<div>
-			</div>
-		);
-	}
-}
-
-// OWNER components
-/**
- * includes:
- * find a sitter / view booking buttons
- * pets
- */
-
- // SITTER components
- /**
-  * includes:
-  accept / decline buttons
-
-  */
-
-  // BOTH componenets
-  /**
-   * new notifications
-   * ratings
-   * personal information
-   */
-
-export class Notifications extends React.Component {
-	render(){
-		return(
-			<div>
-			</div>
-		);
-	}
-}
-
-export class Ratings extends React.Component {
-	render(){
-		return(
-			<div>
-			</div>
-		);
-	}
-}
-
-export class PersonalInfo extends React.Component {
-	render(){
-		return(
-			<div>
+				</ul>
+				<LoginModal/>
+				<br/>
+				<Button bsStyle="primary" bsSize="large" onClick={this.apiCall}>Make API Call</Button>
+				<p>API Call Return:<pre>{JSON.stringify(this.state.apiResult.data, null, 2)}</pre></p>
 			</div>
 		);
 	}

@@ -50,7 +50,7 @@ if(env === 'dev') {
 	config.devServer = {
 		hot: true,
 		port: port,
-		https: true,
+		https: false,
 		contentBase: devRoot,
 		publicPath: 'https://localhost:' + port + '/',
 		headers: {
