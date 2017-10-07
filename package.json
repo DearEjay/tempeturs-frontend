@@ -70,6 +70,7 @@
     "express": "^4.15.4",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.5.4",
