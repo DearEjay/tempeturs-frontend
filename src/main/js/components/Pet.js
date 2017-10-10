@@ -29,21 +29,19 @@ export class Pet extends React.Component {
 	render() {
 
 		return (
-            <div>
-                <Thumbnail className="petcontainer" src="http://bit.ly/2xvEA7A" alt="242x200">
+                <Thumbnail className="petcard" src="http://bit.ly/2xvEA7A" alt="242x200">
                     <h3>Fido</h3>
                     <p>3 year old Golden Retriever, likes peanut butter and long walks on the beach</p>
                     <p>
                     <Button bsStyle="default" onClick={this.open}>Edit Pet</Button>
                     </p>
-                </Thumbnail>
 
-                <Modal show={this.state.showModal} onHide={this.close}>
+                    <Modal show={this.state.showModal} onHide={this.close}>
                     <div>
                         <h3>Edit Information for Fido</h3>
                     </div>
-                </Modal>
-            </div>
-		);
+                    </Modal>
+                </Thumbnail>
+    		);
 	}
 }

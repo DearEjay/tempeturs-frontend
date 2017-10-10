@@ -6,7 +6,7 @@ import {Pet} from 'js/components/Pet';
 export class PetList extends React.Component {
 	render() {
 		return (
-			<Panel>
+			<Panel className="petlist">
 				<Pet/>
 			</Panel>
 		);
