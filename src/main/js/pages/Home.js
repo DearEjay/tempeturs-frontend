@@ -5,6 +5,7 @@ import {Button } from 'react-bootstrap';
 import axios from 'axios';
 import {LoginModal} from 'js/components/LoginModal';
 import {Pet} from 'js/components/Pet';
+import {Dashboard} from 'js/components/Dashboard';
 
 
 export class Home extends React.Component {
@@ -50,6 +51,7 @@ export class Home extends React.Component {
 					<li><Link to="/payment">Payment</Link></li>
 					<li><Link to="/help">Help</Link></li>
 				</ul>
+				<Dashboard/>
 				<Pet/>
 				<LoginModal/>
 				<br/>
