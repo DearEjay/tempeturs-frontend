@@ -39,24 +39,25 @@ export class Home extends React.Component {
 
 	render() {
 		return (
-			<div className="container padded">
-				{<Menu />}
-				<h1>Welcome to the updated home page! Hooray!</h1>
-				<ul>
-					<li><Link to="/register">Register</Link></li>
-					<li><Link to="/login">Login</Link></li>
-					<li><Link to="/search">Search</Link></li>
-					<li><Link to="/detail">Detail</Link></li>
-					<li><Link to="/booking">Booking</Link></li>
-					<li><Link to="/payment">Payment</Link></li>
-					<li><Link to="/help">Help</Link></li>
-				</ul>
-				<Dashboard/>
-				<Pet/>
-				<LoginModal/>
-				<br/>
-				<Button bsStyle="primary" bsSize="large" onClick={this.apiCall}>Make API Call</Button>
-				<p>API Call Return:<pre>{JSON.stringify(this.state.apiResult.data, null, 2)}</pre></p>
+			<div>
+				<Menu/>
+				<div className="container padded">
+					<h1>Welcome to the updated home page! Hooray!</h1>
+					<ul>
+						<li><Link to="/register">Register</Link></li>
+						<li><Link to="/login">Login</Link></li>
+						<li><Link to="/search">Search</Link></li>
+						<li><Link to="/detail">Detail</Link></li>
+						<li><Link to="/booking">Booking</Link></li>
+						<li><Link to="/payment">Payment</Link></li>
+						<li><Link to="/help">Help</Link></li>
+					</ul>
+					<Dashboard/>
+					<LoginModal/>
+					<br/>
+					<Button bsStyle="primary" bsSize="large" onClick={this.apiCall}>Make API Call</Button>
+					<p>API Call Return:<pre>{JSON.stringify(this.state.apiResult.data, null, 2)}</pre></p>
+				</div>
 			</div>
 		);
 	}

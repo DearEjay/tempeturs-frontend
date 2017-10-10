@@ -1,5 +1,5 @@
 import React from 'react';
-import { Thumbnail, Button, Modal } from 'react-bootstrap';
+import { Thumbnail, Button, Modal, Panel } from 'react-bootstrap';
 
 export class Pet extends React.Component {
 
@@ -8,7 +8,10 @@ export class Pet extends React.Component {
         
         this.state = {
             showModal: false
-        }
+        };
+
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
     }
 
     getInitialState() {
@@ -36,7 +39,9 @@ export class Pet extends React.Component {
                 </Thumbnail>
 
                 <Modal show={this.state.showModal} onHide={this.close}>
-                    hello
+                    <div>
+                        <h3>Edit Information for Fido</h3>
+                    </div>
                 </Modal>
             </div>
 		);

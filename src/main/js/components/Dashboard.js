@@ -12,18 +12,9 @@ export class Dashboard extends React.Component {
                 <Grid>
                     {/* this row contains the buttons at the top and the pet list */}
                     <Row>
-                        <Col className="one" xs={12} md={8}>column 1</Col>
+                        <Col className="one" xs={12} md={8}>column 1
+                            </Col>
                         <Col className="two"xs={6} md={4}><PetList/></Col>
-                    </Row>
-
-                    <Row>
-                        <Col>column 1</Col>
-                        <Col>column 2</Col>
-                    </Row>
-
-                    <Row>
-                        <Col>column 1</Col>
-                        <Col>column 2</Col>
                     </Row>
                 </Grid>
             </div>
