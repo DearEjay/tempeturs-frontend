@@ -17,11 +17,11 @@ export class Menu extends React.Component {
 					<Nav right eventKey={0}>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
-						<MenuItem eventKey={1} href="#">Link</MenuItem>						
+						<MenuItem eventKey={1} href="#">Link</MenuItem>
 					</Nav>
-					
+
 				</Navbar>
-				
+
 			</div>
 		);
 	}
