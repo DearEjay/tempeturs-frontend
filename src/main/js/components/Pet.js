@@ -37,9 +37,17 @@ export class Pet extends React.Component {
                     </p>
 
                     <Modal show={this.state.showModal} onHide={this.close}>
-                    <div>
-                        <h3>Edit Information for Fido</h3>
-                    </div>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Edit Pet Information</Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Body>
+                            hello
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                        <Button onClick={this.close}>Close</Button>
+                    </Modal.Footer>
                     </Modal>
                 </Thumbnail>
     		);

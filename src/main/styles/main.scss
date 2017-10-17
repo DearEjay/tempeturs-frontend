@@ -4,15 +4,35 @@
 //@import "~font-awesome/scss/font-awesome.scss";
 
 .petcard {
-    background-color: #f3e1d8;
+    background-color: rgb(255, 255, 255);
     width: 300px;
     padding: 12px;
 }
 
 .petlist {
     align-content: center;
+    background-color: #f3e1d8;
+
+    overflow: auto;
+    height: 500px;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+
+.petlist::-webkit-scrollbar {
+    display: none;
+}
+
+.menuicon {
+    height: 40px;
+    width: 40px;
 }
 
 .one {
     background-color: yellow;
+}
+
+.ownerbut {
+    margin: 8px;
 }

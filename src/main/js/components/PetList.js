@@ -8,6 +8,9 @@ export class PetList extends React.Component {
 		return (
 			<Panel className="petlist">
 				<Pet/>
+				<Pet/>
+				<Pet/>
+				<Pet/>
 			</Panel>
 		);
 	}
