@@ -51,6 +51,8 @@ export class Home extends React.Component {
 						<li><Link to="/booking">Booking</Link></li>
 						<li><Link to="/payment">Payment</Link></li>
 						<li><Link to="/help">Help</Link></li>
+						<li><Link to="/sitter">Sitter Demo</Link></li>
+
 					</ul>
 					<Dashboard/>
 					<LoginModal/>

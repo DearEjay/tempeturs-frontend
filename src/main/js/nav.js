@@ -18,12 +18,11 @@ export class Menu extends React.Component {
 					<Nav className="navbar-right" eventKey={0}>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
 						<MenuItem eventKey={1} href="#">Link</MenuItem>
-						<MenuItem eventKey={1} href="#">Link</MenuItem>	
-						<UserNav/>					
+						<MenuItem eventKey={1} href="#">Link</MenuItem>
 					</Nav>
-					
+
 				</Navbar>
-				
+
 			</div>
 		);
 	}

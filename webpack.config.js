@@ -18,6 +18,7 @@ let outputFile = '';
 let port = 3000;
 
 const config = {
+	watch: true,
 	context: src,
 	output: {
 		path: path.resolve(dest, 'statics'),
@@ -31,14 +32,25 @@ const config = {
 			}, {
 				test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|ico|eot)$/,
 				use: "url-loader?limit=100000"
-			}]
+			},{
+  		  test: /\.css$/,
+        loader: 'style-loader'
+			}, {
+				test: /\.css$/,
+				loader: 'css-loader',
+
+				query: {
+					modules: true,
+					localIdentName: '[name]__[local]___[hash:base64:5]'
+  }
+}]
 	},
 	resolve: {
 		alias: {
 			js: path.resolve(src, 'js'),
 			styles: path.resolve(src, 'styles')
 		},
-		extensions: ['.json', '.js', '.scss']
+		extensions: ['.json', '.js', '.scss', '.jsx']
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
@@ -49,13 +61,18 @@ const config = {
 if(env === 'dev') {
 	config.devServer = {
 		hot: true,
+		inline: true,
 		port: port,
 		https: false,
 		contentBase: devRoot,
 		publicPath: 'https://localhost:' + port + '/',
 		headers: {
 			'access-control-allow-origin': '*'
-		}
+		},
+		watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+    }
 	};
 
 	config.entry = [
