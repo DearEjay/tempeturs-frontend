@@ -12,6 +12,8 @@ import {Payment} from 'js/pages/Payment';
 import {Help} from 'js/pages/Help';
 import {Contact} from 'js/pages/Contact';
 import {Menu} from 'js/nav';
+import {Dashboard} from 'js/components/SitterComps/dashboard/dashboard.js';
+
 
 export default class Index extends React.Component {
 	render() {
@@ -27,8 +29,10 @@ export default class Index extends React.Component {
 					<Route exact path="/payment" component={Payment} />
 					<Route exact path="/help" component={Help} />
 					<Route exact path="/sitter" component={Sitter} />
+					<Route exact path="/signout" component={Sitter} />
+					<Route exact path="/sitter/dashboard" component={Dashboard} />
 				</div>
 			</HashRouter>
 		);
-	} 
+	}
 }
