@@ -1,5 +1,5 @@
 import React from 'react';
-import { Thumbnail, Button, Modal, Panel, Image } from 'react-bootstrap';
+import { Button, Modal, Panel, Image } from 'react-bootstrap';
 
 export class Pet extends React.Component {
 

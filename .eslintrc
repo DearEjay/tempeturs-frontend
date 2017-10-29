@@ -25,10 +25,10 @@
                 "SwitchCase": 1
             }
         ],
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
+        // "linebreak-style": [
+        //     "warn",
+        //     "unix"
+        // ],
         "quotes": [
             "error",
             "single"
