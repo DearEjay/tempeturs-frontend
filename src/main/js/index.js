@@ -14,7 +14,7 @@ import {Contact} from 'js/pages/Contact';
 import {Menu} from 'js/nav';
 import {Dashboard} from 'js/components/SitterComps/dashboard/dashboard.js';
 import {Calendar} from 'js/components/SitterComps/calendar/calendar.js';
-import {Profile} from 'js/components/SitterComps/profile/profile.js';
+//import {Profile} from 'js/components/SitterComps/profile/profile.js';
 export default class Index extends React.Component {
 	render() {
 		return (
@@ -32,7 +32,6 @@ export default class Index extends React.Component {
 					<Route exact path="/signout" component={Sitter} />
 					<Route exact path="/sitter/dashboard" component={Dashboard} />
 					<Route exact path="/sitter/user/calendar" component={Calendar} />
-					<Route exact path="/sitter/user/profile"  component={Profile} />
 				</div>
 			</HashRouter>
 		);
