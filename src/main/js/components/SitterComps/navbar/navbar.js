@@ -4,7 +4,6 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 import { Image } from 'react-bootstrap';
 
-import styles from '/home/ejay/Desktop/Senior/SE2/tempeturs-frontend/src/main/js/components/SitterComps/layouts/layout.css';
 
 
 export class NavBar extends React.Component {

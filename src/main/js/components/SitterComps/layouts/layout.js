@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
-import styles from '/home/ejay/Desktop/Senior/SE2/tempeturs-frontend/src/main/js/components/SitterComps/layouts/layout.css';
 import { NavBar } from 'js/components/SitterComps/navbar/navbar.js';
 import { Sider } from 'js/components/SitterComps/sidebar/sidebar.js';
 import { StatusForm } from 'js/components/SitterComps/main/statusform.js';

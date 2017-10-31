@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
-import styles from '/home/ejay/Desktop/Senior/SE2/tempeturs-frontend/src/main/js/components/SitterComps/layouts/layout.css';
 
 
 export class Header extends React.Component {
