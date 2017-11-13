@@ -3,14 +3,65 @@ import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 import { Image } from 'react-bootstrap';
-
+import axios from 'axios';
 
 
 export class NavBar extends React.Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      userName: ''
+    };
+
+    var userId = this.getCookie('userid');
+    var userToken = this.getCookie('usertoken');
+    var userName = 'bull';
+    const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+
+    var config = {
+      headers: {'Authorization': 'Bearer ' + userToken}
+    };
+
+    axios.get(url+'/user/'+userId, config)
+    .then((response) => {
+        //alert('success');
+        this.setState({userName:  response.data.data.name});
+        //alert('Name:' + this.state.userName);
+        //alert(typeof this.state.userName);
+        console.log(response);
+    })
+    .catch(function (error) {
+        alert('errors');
+        console.log(error);
+    });
+
+    
+  }
+
+  getCookie(cname) {
+      var name = cname + '=';
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return '';
+  }
+
   render(){
+
+    var name = ' ' + this.state.userName;
     return (
       <div className="navbar navbar-blue navbar-fixed-top">
+
             <div className="navbar-header">
                 <button className="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                     <span className="sr-only">Toggle</span>
@@ -38,7 +89,7 @@ export class NavBar extends React.Component {
 
 
                 <ul  className="nav navbar-nav navbar-right">
-                    <DropdownButton  bsStyle="default" className="glyphicon glyphicon-user"  title=" Ejay Mallard" noCaret id="dropdown-no-caret">
+                    <DropdownButton  bsStyle="default" className="glyphicon glyphicon-user"  title={name} noCaret id="dropdown-no-caret">
                     <li><a href="/profile"><MenuItem eventKey="1" active >Edit Profile</MenuItem></a></li>
                     <li><a href="#/sitter"><MenuItem eventKey="2"  active>Logout</MenuItem></a></li>
                     </DropdownButton>
