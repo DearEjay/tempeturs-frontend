@@ -80,6 +80,7 @@ export class PetList extends React.Component {
 				console.log(response);
 		 })
 		 .catch(function (error) {
+			 	alert('error!');
 				 console.log(error);
 		 });
 
