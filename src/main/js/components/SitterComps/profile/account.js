@@ -8,6 +8,7 @@ import { FileInput } from "react-file-input";
 import { BookMe } from "js/components/SitterComps/bookme/bookme.js";
 import { StarRating } from "js/components/SitterComps/rate/StarRating.js";
 import { RateMe } from "js/components/SitterComps/rate/rateme.js";
+import axios, {get} from 'axios';
 
 export class Account extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ export class Account extends React.Component {
   }
 
   getUserName() {
-
     var config = {
       headers: { Authorization: "Bearer " + this.state.userToken }
     };
@@ -95,7 +95,6 @@ export class Account extends React.Component {
               </tr>
             </tbody>
           </table>
-
 
           <br />
           <h2>
