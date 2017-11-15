@@ -16,11 +16,12 @@ export class Account extends React.Component {
 
     this.state = {
       userToken: this.getCookie("usertoken"),
-      userId: this.getCookie("userid")
+      userId: this.getCookie("userid"),
+      name: "",
+      classification: "",
+      rating: 0
     };
-  }
 
-  getUserName() {
     var config = {
       headers: { Authorization: "Bearer " + this.state.userToken }
     };
@@ -28,9 +29,12 @@ export class Account extends React.Component {
     const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
 
     axios
-      .get(url + "/user/" + this.state.userId)
+      .get(url + "/user/" + this.state.userId, config)
       .then(response => {
-        console.log(response);
+        console.log(response.data.data.name);
+        this.setState({name:response.data.data.name});
+        this.setState({classification:response.data.data.classification});
+        this.setState({rating:response.data.data.rate});
       })
       .catch(function(error) {
         alert("error!");
@@ -70,8 +74,8 @@ export class Account extends React.Component {
         </div>
 
         <div className="col-md-9 col-xs-9">
-          <h1 onClick={this.getUserName}>
-            <i>Ejay Mallard</i>
+          <h1>
+            <i>{this.state.name}</i>
           </h1>
 
           <table className="table table-user-information">
@@ -115,7 +119,7 @@ export class Account extends React.Component {
                   <h3>Classification: </h3>
                 </td>
                 <td>
-                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;Sitter{" "}
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.classification}{" "}
                 </td>
               </tr>
               <tr>
@@ -123,7 +127,7 @@ export class Account extends React.Component {
                   <h3>Rating: </h3>
                 </td>
                 <td>
-                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;0 of 5 Stars{" "}
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.rating} of 5 Stars{" "}
                 </td>
               </tr>
             </tbody>
