@@ -10,6 +10,9 @@ import { StarRating } from "js/components/SitterComps/rate/StarRating.js";
 import { RateMe } from "js/components/SitterComps/rate/rateme.js";
 import axios, {get} from 'axios';
 
+import Rater from 'react-rater';
+import 'react-rater/lib/react-rater.scss';
+
 export class Account extends React.Component {
   constructor(props) {
     super(props);
@@ -128,6 +131,7 @@ export class Account extends React.Component {
                 </td>
                 <td>
                   <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.rating} of 5 Stars{" "}
+                  <br /> <Rater total={5} rating={2} />
                 </td>
               </tr>
             </tbody>
