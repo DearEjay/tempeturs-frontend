@@ -17,6 +17,7 @@ constructor(props) {
   this.state = {
     starsSelected: 0
   };
+  
   this.change = this.change.bind(this);
 }
 

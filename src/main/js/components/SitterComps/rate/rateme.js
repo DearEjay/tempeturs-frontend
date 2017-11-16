@@ -35,7 +35,7 @@ export  class RateMe extends React.Component {
 
                     <Modal show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton>
-                        <Modal.Title><h3>Rate This User (Maybe say "Rate Name")</h3></Modal.Title>
+                        <Modal.Title><h3>Rate Me</h3></Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Panel>
