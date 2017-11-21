@@ -6,7 +6,7 @@ import { StatusForm } from "js/components/SitterComps/main/statusform.js";
 import { PetList } from "js/components/PetList.js";
 import { FileInput } from "react-file-input";
 import { BookMe } from "js/components/SitterComps/bookme/bookme.js";
-import { StarRating } from "js/components/SitterComps/rate/StarRating.js";
+// import { StarRating } from "js/components/SitterComps/rate/StarRating.js";
 import { RateMe } from "js/components/SitterComps/rate/rateme.js";
 import axios, {get} from 'axios';
 
@@ -20,9 +20,11 @@ export class Account extends React.Component {
     this.state = {
       userToken: this.getCookie("usertoken"),
       userId: this.getCookie("userid"),
+      user: {},
       name: "",
       classification: "",
-      rating: 0
+      rating: 0,
+      ratings: []
     };
 
     var config = {
@@ -31,19 +33,42 @@ export class Account extends React.Component {
 
     const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
 
+    // GET THE CURRENT USER
     axios
       .get(url + "/user/" + this.state.userId, config)
       .then(response => {
         console.log(response.data.data.name);
-        this.setState({name:response.data.data.name});
-        this.setState({classification:response.data.data.classification});
-        this.setState({rating:response.data.data.rate});
+        this.setState({user:response.data.data});
       })
       .catch(function(error) {
         alert("error!");
         console.log(error);
       });
+
+      // GET THE LIST OF RATINGS
+      axios
+      .get(url + "/user/" + this.state.userId + "/ratings/", config)
+      .then(response => {
+        console.log("ratings");
+        console.log(response);
+        this.setState({ratings:response.data.data});
+      })
+      .catch(function(error) {
+        alert("error!");
+        console.log(error);
+      });
+
+      // AVERAGE THE RATINGS
+      var arr = this.state.ratings;
+      var result = 0;
+      for(var i = 0; i < arr.length; i++){
+        result += arr[i];
+      }
+      result = result/arr.length;
+      this.setState({rating:result});
+
   }
+
 
   getCookie(cname) {
     var name = cname + "=";
@@ -78,7 +103,7 @@ export class Account extends React.Component {
 
         <div className="col-md-9 col-xs-9">
           <h1>
-            <i>{this.state.name}</i>
+            <i>{this.state.user.name}</i>
           </h1>
 
           <table className="table table-user-information">
@@ -114,7 +139,7 @@ export class Account extends React.Component {
                   <h3>Pay Rate: </h3>
                 </td>
                 <td>
-                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;$12{" "}
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;${this.state.user.rate}{" "}
                 </td>
               </tr>
               <tr>
@@ -122,7 +147,7 @@ export class Account extends React.Component {
                   <h3>Classification: </h3>
                 </td>
                 <td>
-                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.classification}{" "}
+                  <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.user.classification}{" "}
                 </td>
               </tr>
               <tr>
@@ -131,7 +156,7 @@ export class Account extends React.Component {
                 </td>
                 <td>
                   <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.state.rating} of 5 Stars{" "}
-                  <br /> <Rater total={5} rating={2} />
+                  <br /> <Rater interactive={false} total={5} rating={this.state.rating} />
                 </td>
               </tr>
             </tbody>
