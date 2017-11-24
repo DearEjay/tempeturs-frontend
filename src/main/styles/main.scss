@@ -547,6 +547,8 @@ small.text-muted { font-family: courier, courier-new, monospace }
 
 .petlist {
     align-content: center;
+    overflow-y: scroll;
+    height:400px;
 }
 
 .one {
