@@ -11,13 +11,13 @@ import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import axios, {get} from 'axios';
 import { User } from 'js/components/SitterComps/user/user.js';
 
-export class Account extends React.Component {
+export class OtherAccount extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       userToken: this.getCookie('usertoken'),
-      userId: this.getCookie('userid'),
+      userId: this.getCookie('otherid'),
       name: '',
       classification: '',
       rate: 0,
@@ -34,17 +34,19 @@ export class Account extends React.Component {
     };
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+    alert('otherid ');
     alert(this.state.userId);
     alert(this.state.userToken);
 
-    axios.get(url + '/user/' + this.state.userId, config)
+    axios.get(url + '/user/' + this.state.userId)
     .then(response => {
-
+      console.log(response);
+      alert('other account success');
       this.setState({name:response.data.data.name});
       //this.setState({userId:response.data.data.id});
       this.setState({classification: response.data.data.classification});
-      this.setState({city: response.data.data.address.city});
-      this.setState({state: response.data.data.address.state});
+      //this.setState({city: response.data.data.address.city});
+      //this.setState({state: response.data.data.address.state});
       this.setState({image: response.data.data.image});
       this.setState({rate: response.data.data.rate});
 
@@ -55,7 +57,7 @@ export class Account extends React.Component {
       console.log(this.state.image);
       console.log(this.state.rate);
 
-      this.setState({userContent:<User key={this.state.userId} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />});
+      this.setState({userContent:<User key={this.state.userId} name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} />});
 
       console.log(this.state.userContent);
 
@@ -66,6 +68,7 @@ export class Account extends React.Component {
       alert('error!');
       console.log(error);
     });
+
 
     //this.insertParam('userid', this.state.userId);
   }

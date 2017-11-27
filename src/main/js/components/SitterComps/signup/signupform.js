@@ -53,7 +53,7 @@ export class Signupform extends React.Component {
           document.getElementById('userstate').value =  res[1];
         })
         .catch(function(error) {
-          alert('nozip');
+          alert('Not a valid zipcode!');
           console.log(error);
         });
     }
