@@ -301,7 +301,6 @@ export class PetList extends React.Component {
 
 										<label><b>Which Pets?</b></label>
 										<br/>
-										{/* I don't know how I'd query from the database */}
 										<select id='deletepets' name="pets" required multiple>
 												{DeleteList}
 											</select>

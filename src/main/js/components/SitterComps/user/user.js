@@ -8,6 +8,7 @@ import { FileInput } from 'react-file-input';
 import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
 // import { StarRating } from 'js/components/SitterComps/rate/StarRating.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
+import {RatingList} from 'js/components/SitterComps/rate/ratinglist.js';
 import axios, {get} from 'axios';
 
 export class User extends React.Component {
@@ -17,9 +18,16 @@ export class User extends React.Component {
     this.state = {
       userToken: this.getCookie('usertoken'),
       userId: this.getCookie('userid'),
+      ratingInfo: this.props.userId,
+      self: true
     };
 
     this.insertParam = this.insertParam.bind(this);
+    this.getRating = this.getRating.bind(this);
+    
+    if(this.state.userId == this.props.userId){
+      this.setState({self:false});
+    }
 
   }
   insertParam(key, value){
@@ -56,12 +64,55 @@ export class User extends React.Component {
     return '';
   }
 
+  getRating(){
+    var config = {
+      headers: { Authorization: "Bearer " + this.state.userToken }
+    };
+
+    const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+
+    var ratings = [];
+
+    axios
+      .get(url + "/user/" + this.props.userId + "/ratings/", config)
+      .then(response => {
+        console.log(response);
+        console.log("got the ratings");
+        ratings = response.data.data;
+      })
+      .catch(function(error) {
+        alert("error!");
+        console.log(error);
+      });
+
+      var ret = 0;
+    for(var i = 0; i < ratings.length; i++){
+      ret += ratings[i].stars;
+    }
+    if(ratings.length != 0){
+      ret = ret/ratings.length;
+    }
+
+    return ret;
+  }
+
   render() {
     const imageUrl= this.props.image + '?token=' + this.state.userToken;
-    var content = null;
+    var bookingcontent = null;
+    var ratingcontent = null;
     var citystatecontent = null;
-    if(this.props.classification == 'SITTER'){
-      content = < BookMe />;
+    var self = true;
+    if(this.state.userId != this.props.userId && this.props.userId){
+      self = false;
+      console.log("you are not yourself");
+      console.log(this.state.userId);
+      console.log(this.props.userId);
+    }
+    if(this.props.classification == 'SITTER' && !self){
+      bookingcontent = < BookMe />;
+    }
+    if(!self){
+      ratingcontent= <RateMe info={this.state.ratingInfo}/>;
     }
     if(this.props.city != null || this.props.state != null){
 
@@ -97,12 +148,13 @@ export class User extends React.Component {
       <tr>
       <td>
       <h1>
-      {content}
+      {bookingcontent}
       </h1>
       </td>
       <td>
       <h1>
-      <RateMe />
+      
+      {ratingcontent}
       </h1>
       </td>
       </tr>
@@ -137,8 +189,13 @@ export class User extends React.Component {
       <h3>Rating: </h3>
       </td>
       <td>
-      <br /> &nbsp;&nbsp;&nbsp;&nbsp;0 of 5 Stars{' '}
+      <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.getRating()} of 5 Stars{' '}
       </td>
+      </tr>
+      <tr>
+        <td>
+        <br /><br />  &nbsp;&nbsp;&nbsp;&nbsp; <RatingList id={this.props.userId} />
+        </td>
       </tr>
       </tbody>
       </table>

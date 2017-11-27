@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Modal, Panel } from 'react-bootstrap';
+import axios, { post } from "axios";
+
 
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.scss';
 
-export  class RateMe extends React.Component {
+export class RateMe extends React.Component {
 
     constructor(props){
         super(props);
@@ -13,13 +15,15 @@ export  class RateMe extends React.Component {
             userToken: this.getCookie("usertoken"),
             userId: this.getCookie("userid"),
             user: {},
-            showModal: false
+            showModal: false,
+            val: 0
         };
 
         this.open = this.open.bind(this);
         this.close = this.close.bind(this);
         this.submitRating = this.submitRating.bind(this);
-
+        this.handleRate = this.handleRate.bind(this);
+        
         var config = {
             headers: { Authorization: "Bearer " + this.state.userToken }
           };
@@ -66,17 +70,58 @@ export  class RateMe extends React.Component {
         this.setState({ showModal: true });
     }
 
+    handleRate(e){
+        // console.log(e);
+        // console.log(e.nativeEvent.type);
+        if(e.nativeEvent.type == 'click'){
+            console.log("rating: "+e.rating);
+            this.setState({val: e.rating});
+        }        
+    }
+
     submitRating(e){
         e.preventDefault();
 
         // make sure we got all of the values from the form
-        // TODO : get the number of stars from "rater"
-        var stars = 0;
-
+        
+        var num = this.state.val;
         var comments = document.getElementById("comments").value;
+        alert(num);
         alert(comments);
-        var petType = document.getElementById("typeofpet").value;
-        alert(petType);
+
+        // Body: {
+        //     "stars":1,
+        //     "comments":"This person sucked.",
+        //     "fromUserID":"b5e10c61-3119-436f-a8f6-f27e827e16eb"
+        // }        
+
+        var rating = {
+            "stars": num,
+            "comments": comments,
+            "fromUserID": this.state.userId
+        };
+        console.log("THIS IS YOUR RATING");
+        console.log(rating);
+
+        var config = {
+            headers: { 'Authorization': "Bearer " + this.state.userToken }
+          };
+      
+          const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+
+        // GET THE USER ID OF THE PROFILE YOU'RE ON
+          axios
+            .post(url + "/user/" + this.props.info + "/ratings/", rating, config)
+            .then(response => {
+                console.log("successfully added a rating");
+              console.log(response);
+            })
+            .catch(function(error) {
+              alert("error!");
+              console.log(error);
+            });
+
+        this.close();
     }
 
 	render() {
@@ -91,8 +136,9 @@ export  class RateMe extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Panel>
-                            <Rater />
+                            <Rater onRate={this.handleRate} />
                             <input type="text" id="comments" />
+                            <Button bsStyle="primary" onClick={this.submitRating}>Submit</Button>
                         </Panel>
                     </Modal.Body>
 

@@ -95,8 +95,11 @@ export class AccountEdit extends React.Component {
     if(isValidZip.test(zipcode)){
       const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
       const url1 = '&sensor=true';
+      var config = {
+        headers: { Authorization: 'Bearer ' + this.state.userToken }
+      };
       //alert(url+zipcode+url1);
-      axios.get(url+zipcode+url1)
+      axios.get(url+zipcode+url1, config)
         .then(response => {
           //('gotzip');
           console.log(response);

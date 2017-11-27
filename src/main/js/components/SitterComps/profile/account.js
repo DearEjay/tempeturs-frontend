@@ -29,7 +29,7 @@ export class Account extends React.Component {
     };
 
     var config = {
-      headers: { Authorization: 'Bearer ' + this.state.userToken }
+      headers: { 'Authorization' : 'Bearer ' + this.state.userToken }
     };
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
@@ -57,8 +57,6 @@ export class Account extends React.Component {
       this.setState({userContent:<User key={this.state.userId} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />});
 
       console.log(this.state.userContent);
-
-
 
     })
     .catch(function(error) {
