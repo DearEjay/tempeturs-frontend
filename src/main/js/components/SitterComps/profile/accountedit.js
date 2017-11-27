@@ -9,6 +9,8 @@ import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import axios, {get} from 'axios';
 import { User } from 'js/components/SitterComps/user/user.js';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export class AccountEdit extends React.Component {
   constructor(props) {
@@ -21,8 +23,9 @@ export class AccountEdit extends React.Component {
       classification: '',
       rate: 0,
       image: null,
-      city: 'somewhere',
-      state: 'crazy',
+      city: '',
+      email: '',
+      state: '',
       zipcode: null,
       userContent: null
       //    const currentUser = <User key={this.state.name} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />;
@@ -53,6 +56,7 @@ export class AccountEdit extends React.Component {
       this.setState({state: response.data.data.address.state});
       this.setState({image: response.data.data.image});
       this.setState({rate: response.data.data.rate});
+      this.setState({email: response.data.data.email});
 
       console.log(this.state.name);
       console.log(this.state.classification);
@@ -73,31 +77,49 @@ export class AccountEdit extends React.Component {
       console.log(error);
     });
 
-    this.insertParam('userid', this.state.userId);
+  //  this.insertParam('userid', this.state.userId);
   }
 
-  insertParam(key, value){
-    key = encodeURI(key); value = encodeURI(value);
+  handleChange(e){
+    this.setState({zipcode: e.target.value});
+    this.cityState();
+  }
 
-    var kvp = document.location.search.substr(1).split('?');
+  cityState(){
 
-    var i=kvp.length; var x; while(i--)
-    {
-      x = kvp[i].split('=');
 
-      if (x[0]==key)
-      {
-        x[1] = value;
-        kvp[i] = x.join('=');
-        break;
-      }
+    var zipcode = document.getElementById('userzip').value;
+    //alert(zipcode);
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+
+    if(isValidZip.test(zipcode)){
+      const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
+      const url1 = '&sensor=true';
+      //alert(url+zipcode+url1);
+      axios.get(url+zipcode+url1)
+        .then(response => {
+          //('gotzip');
+          console.log(response);
+          var obj = response.data.results;
+          //alert(obj[0].formatted_address);
+          var res = obj[0].formatted_address.split(' ');
+          if(res[1] != undefined){
+            document.getElementById('usercity').value = res[0].slice(0,-1);
+            document.getElementById('userstate').value =  res[1];
+          }else{
+            throw 'Not a valid zipcode!\nPlease try again!';
+          }
+        })
+        .catch(function(error) {
+          toast.error(error, {
+              position: toast.POSITION.BOTTOM_RIGHT
+          });
+          console.log(error);
+        });
     }
-
-    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-
-    //this will reload the page, it's likely better to store this until finished
-    document.location.search = kvp.join('?');
   }
+
+
 
   getCookie(cname) {
     var name = cname + '=';
@@ -115,9 +137,11 @@ export class AccountEdit extends React.Component {
     return '';
   }
 
+
   render() {
     return (
       <div class="container">
+      <ToastContainer />
     <h1>Edit Profile</h1>
 
 	<div class="row">
@@ -143,7 +167,7 @@ export class AccountEdit extends React.Component {
           <div class="form-group">
             <label class="col-lg-3 control-label">Full name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" readonly="false" value={this.state.name} />
+              <input class="form-control" type="text" readonly="false" value={this.state.name}  onChange={(e) => this.setState({name: e.target.value})} />
             </div>
           </div>
           <div class="form-group">
@@ -154,24 +178,24 @@ export class AccountEdit extends React.Component {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <label class="col-lg-3 control-label">Zipcode:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="number" value={this.state.rate} />
+              <input class="form-control" type="number" value={this.state.rate} onChange={(e) => this.setState({rate: e.target.value})} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <input class="form-control" type="number" value={this.state.zipcode} />
+             <input class="form-control" type="number" id='userzip' value={this.state.zipcode} onChange={(e) => {this.handleChange(e);}} />
             </div>
           </div>
           < br />
           <div class="form-group">
             <label class="col-lg-3 control-label">City:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value={this.state.city} readonly='true' />
+              <input class="form-control" type="text" id='usercity' value={this.state.city} readonly='true' />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-lg-3 control-label">State:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value={this.state.state} readonly='true' />
+              <input class="form-control" id='userstate' type="text" value={this.state.state} readonly='true' />
             </div>
           </div>
 
@@ -180,7 +204,7 @@ export class AccountEdit extends React.Component {
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="janesemail@gmail.com" />
+              <input class="form-control" type="text" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
             </div>
           </div>
 

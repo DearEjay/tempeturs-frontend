@@ -18,6 +18,26 @@ export class User extends React.Component {
       userToken: this.getCookie('usertoken'),
       userId: this.getCookie('userid'),
     };
+
+    this.insertParam = this.insertParam.bind(this);
+
+  }
+  insertParam(key, value){
+    key = encodeURI(key); value = encodeURI(value);
+
+    var kvp = document.location.search.substr(1).split('?');
+
+    var i=kvp.length; var x; while(i--)
+    {
+      x = kvp[i].split('=');
+
+      if (x[0]==key)
+      {
+        x[1] = value;
+        kvp[i] = x.join('=');
+        break;
+      }
+    }
   }
 
   getCookie(cname) {
@@ -38,6 +58,17 @@ export class User extends React.Component {
 
   render() {
     const imageUrl= this.props.image + '?token=' + this.state.userToken;
+    var content = null;
+    var citystatecontent = null;
+    if(this.props.classification == 'SITTER'){
+      content = < BookMe />;
+    }
+    if(this.props.city != null || this.props.state != null){
+
+      citystatecontent = <h1>{this.props.city}, {this.props.state} </h1>;
+    }
+
+    
     return (
       <div className='row'>
       <div className='col-md-2 hidden-xs' align='center'>
@@ -61,12 +92,12 @@ export class User extends React.Component {
       <tbody>
       <tr>
       <td>
-      <h1>{this.props.city}, {this.props.state} </h1>
+      {citystatecontent}
       </td>
       <tr>
       <td>
       <h1>
-      <BookMe />
+      {content}
       </h1>
       </td>
       <td>

@@ -127,7 +127,7 @@ export class PetList extends React.Component {
 			 location.reload();
 		})
 		.catch(function (error) {
-			 alert('error!');
+			 alert('delete pet error!');
 				console.log(error);
 		});
 
