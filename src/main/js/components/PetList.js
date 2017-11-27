@@ -6,24 +6,24 @@ import axios, { post } from "axios";
 import axiosFileupload from "axios-fileupload";
 
 export class PetList extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      showModal: false,
-      file: null,
-      userToken: this.getCookie("usertoken"),
-      userId: this.getCookie("userid"),
-      addImage: ""
-    };
+  //   this.state = {
+  //     showModal: false,
+  //     file: null,
+  //     userToken: this.getCookie("usertoken"),
+  //     userId: this.getCookie("userid"),
+  //     addImage: ""
+  //   };
 
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.fileUpload = this.fileUpload.bind(this);
+  //   this.onFormSubmit = this.onFormSubmit.bind(this);
+  //   this.onChange = this.onChange.bind(this);
+  //   this.fileUpload = this.fileUpload.bind(this);
 
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-  }
+  //   this.open = this.open.bind(this);
+  //   this.close = this.close.bind(this);
+  // }
 
 	constructor(props){
 			super(props);

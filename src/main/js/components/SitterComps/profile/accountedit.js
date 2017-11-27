@@ -6,7 +6,6 @@ import { StatusForm } from 'js/components/SitterComps/main/statusform.js';
 import { PetList } from 'js/components/PetList.js';
 import { FileInput } from 'react-file-input';
 import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
-import { StarRating } from 'js/components/SitterComps/rate/StarRating.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import axios, {get} from 'axios';
 import { User } from 'js/components/SitterComps/user/user.js';
