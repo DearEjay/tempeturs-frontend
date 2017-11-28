@@ -6,7 +6,6 @@ import { StatusForm } from 'js/components/SitterComps/main/statusform.js';
 import { PetList } from 'js/components/PetList.js';
 import { FileInput } from 'react-file-input';
 import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
-import { StarRating } from 'js/components/SitterComps/rate/StarRating.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import axios, {get} from 'axios';
 import { User } from 'js/components/SitterComps/user/user.js';
@@ -30,7 +29,7 @@ export class Account extends React.Component {
     };
 
     var config = {
-      headers: { Authorization: 'Bearer ' + this.state.userToken }
+      headers: { 'Authorization' : 'Bearer ' + this.state.userToken }
     };
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
@@ -59,11 +58,10 @@ export class Account extends React.Component {
 
       console.log(this.state.userContent);
 
-
-
     })
     .catch(function(error) {
-      alert('error!');
+      alert('error! in account.js');
+      console.log("error in account.js");
       console.log(error);
     });
 
