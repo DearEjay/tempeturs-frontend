@@ -112,9 +112,9 @@ export class AccountEdit extends React.Component {
           }
         })
         .catch(function(error) {
-          toast.error(error, {
+          /*toast.error(error, {
               position: toast.POSITION.BOTTOM_RIGHT
-          });
+          });*/
           console.log(error);
         });
     }

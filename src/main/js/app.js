@@ -18,4 +18,12 @@ const store = createStore(reducer);
 
 const mountNode = document.querySelector('#main');
 ReactDOM.render(<Provider store={store}><Index /></Provider>, mountNode);
-ReactDOM.render(<ToastContainer />);
+ReactDOM.render(<ToastContainer
+          position="top-right"
+          type="default"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+         />);
