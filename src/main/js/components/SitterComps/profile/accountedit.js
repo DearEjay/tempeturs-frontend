@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 export class AccountEdit extends React.Component {
   constructor(props) {
     super(props);
+    this.here = this.here.bind(this);
 
     this.state = {
       userToken: this.getCookie('usertoken'),
@@ -27,26 +28,28 @@ export class AccountEdit extends React.Component {
       email: '',
       state: '',
       zipcode: null,
-      userContent: null
+      userContent: null,
+      user: {}
       //    const currentUser = <User key={this.state.name} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />;
 
     };
-
+    this.user = {};
     var config = {
       headers: { Authorization: 'Bearer ' + this.state.userToken }
     };
 
-    alert(this.state.userToken);
+  //  alert(this.state.userToken);
 
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
-    alert(this.state.userId);
-    alert(this.state.userToken);
+    //alert(this.state.userId);
+    //alert(this.state.userToken);
 
     axios.get(url + '/user/' + this.state.userId, config)
     .then(response => {
       console.log('edit');
       console.log(response);
+      this.setState({user: response.data.data});
 
       this.setState({name:response.data.data.name});
       this.setState({userId:response.data.data.id});
@@ -65,9 +68,7 @@ export class AccountEdit extends React.Component {
       console.log(this.state.image);
       console.log(this.state.rate);
 
-      this.setState({userContent:<User key={this.state.userId} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />});
 
-      console.log(this.state.userContent);
 
 
 
@@ -77,13 +78,33 @@ export class AccountEdit extends React.Component {
       console.log(error);
     });
 
-  //  this.insertParam('userid', this.state.userId);
-  }
+    console.log(this.state.user);
+  }//end of constructor
 
   handleChange(e){
     this.setState({zipcode: e.target.value});
+    //alert('zipchange');
     this.cityState();
   }
+  fileUpload(file){
+			const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+			const formData = new FormData();
+			formData.append('file',file);
+			formData.append('permissions', 'PROTECTED');
+			alert(this.state.userToken);
+			alert(file.name);
+
+			const config = {
+				headers: {
+						'Authorization': 'Bearer ' + this.state.userToken
+				}
+			};
+			// I also tried adding 'content-type': 'multipart/form-data' to the header
+
+
+		return  axios.post(url+'/file/', formData,config);
+	}
+
 
   cityState(){
 
@@ -93,13 +114,11 @@ export class AccountEdit extends React.Component {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
     if(isValidZip.test(zipcode)){
-      const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
-      const url1 = '&sensor=true';
-      var config = {
-        headers: { Authorization: 'Bearer ' + this.state.userToken }
-      };
-      //alert(url+zipcode+url1);
-      axios.get(url+zipcode+url1, config)
+      const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
+      const url1 = '&key=AIzaSyClrQRnLM322oSpXsNfqOVR5SlwNlXI-aU';
+
+      alert(url+zipcode+url1);
+      axios.get(url+zipcode+url1)
         .then(response => {
           //('gotzip');
           console.log(response);
@@ -140,37 +159,98 @@ export class AccountEdit extends React.Component {
     return '';
   }
 
+  here(){
+    alert("here");
+    var name =   document.getElementById('nameofuser').value ;
+    var city =  document.getElementById('usercity').value;
+    var state =  document.getElementById('userstate').value;
+    var zipcode = document.getElementById('userzip').value;
+    var classification = document.getElementById('classificationtype').value;
+    var email = document.getElementById('useremail').value;
+    var rate = document.getElementById('userrate').value;
+
+    alert(name + ' ' + city + ' ' + state + ' ' + zipcode + ' ' + email + ' ' + classification);
+
+    var user = {};
+    var config = {
+      headers: { Authorization: 'Bearer ' + this.state.userToken }
+    };
+    const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+
+    axios.get(url + '/user/' + this.state.userId, config)
+    .then(response => {
+      console.log('got user data here');
+      var user = response.data.data;
+      console.log(user);
+      user.name = name;
+      user.address.city = city;
+      user.address.state = state;
+      user.address.zipcode = zipcode;
+      user.classification = classification;
+      user.email = email;
+      user.rate = rate; 
+
+      console.log(user);
+
+      axios.put(url + '/user/' + this.state.userId,user,config)
+      .then(response => {
+          alert('Account updated!');
+          console.log(response);
+          location.reload();
+      });
+    })
+    .catch(function(error) {
+      alert('error!');
+      console.log(error);
+    });
+
+
+
+
+
+
+
+
+  }
+
 
   render() {
+    var optionvalues =   <select name="classificationtype" id='classificationtype'><option value='SITTER'>Sitter</option><option value='OWNER' selected="selected">Owner</option></select>;
+    if(this.state.classification=='SITTER'){
+       optionvalues =   <select name="classificationtype" id='classificationtype'><option value='SITTER' selected="selected">Sitter</option><option value='OWNER'>Owner</option></select>;
+    }
     return (
       <div class="container">
       <ToastContainer />
     <h1>Edit Profile</h1>
 
 	<div class="row">
-      <div class="col-md-3">
+    {/*   <div class="col-md-3">
         <div class="text-center">
           <img src="//placehold.it/100" class="avatar img-circle" alt="avatar" />
           <h6>Upload a different avatar...</h6>
 
-          <input type="file" accept="image/*" class="form-control" />
+          <input type="file" accept="image/*" class="form-control" onChange={(e) => this.setState({ file: e.target.files[0] })} />
+
+
         </div>
       </div>
 
 
+*/}
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
+        {/*<div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a>
           <i class="fa fa-coffee"></i>
           <strong>only image files accepted! </strong>
-        </div>
+        </div> */}
         <h3>Personal info</h3>
 
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">Full name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" readonly="false" value={this.state.name}  onChange={(e) => this.setState({name: e.target.value})} />
+              <input class="form-control" type="text" id='nameofuser' readonly="false" value={this.state.name}  onChange={(e) => this.setState({name: e.target.value})} />
             </div>
           </div>
           <div class="form-group">
@@ -181,7 +261,7 @@ export class AccountEdit extends React.Component {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <label class="col-lg-3 control-label">Zipcode:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="number" value={this.state.rate} onChange={(e) => this.setState({rate: e.target.value})} />
+              <input class="form-control" type="number" id='userrate' value={this.state.rate} onChange={(e) => this.setState({rate: e.target.value})} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <input class="form-control" type="number" id='userzip' value={this.state.zipcode} onChange={(e) => {this.handleChange(e);}} />
@@ -203,18 +283,26 @@ export class AccountEdit extends React.Component {
           </div>
 
 
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Classification:</label>
+            <div class="col-lg-8">
+              {optionvalues}
+
+            </div>
+          </div>
+
 
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
+              <input class="form-control" id='useremail' type="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes" />
+              <input type="button" class="btn btn-primary" onClick={this.here} value="Save Changes" />
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel" />
             </div>

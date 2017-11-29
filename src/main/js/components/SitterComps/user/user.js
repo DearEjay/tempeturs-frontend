@@ -30,7 +30,7 @@ export class User extends React.Component {
     if(this.state.userId == this.props.userId){
       this.setState({self:false});
     }
-    if(this.props.classification=='SITTER' && ratings){
+    if(this.props.classification=='SITTER' ){
       var ratings = [];
       ratings = this.props.ratings;
       console.log(ratings);
@@ -85,7 +85,7 @@ export class User extends React.Component {
     if(this.props.classification == 'SITTER' && this.props.type =='other'){
       bookingcontent = < BookMe />;
     }
-    if(this.props.classification == 'SITTER'){
+    if(this.props.classification == 'SITTER' ){
       rater = <tr> <td><h3>Rating: </h3></td><td><br/> &nbsp;&nbsp;&nbsp;&nbsp;<Rater total={5} rating={this.ret} interactive={false} /><br/>{this.ret} of 5 Stars{' '}</td></tr>;
     }
     if(this.props.type=='other'){
