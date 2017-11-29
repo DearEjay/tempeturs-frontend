@@ -54,7 +54,23 @@ export class Account extends React.Component {
       console.log(this.state.image);
       console.log(this.state.rate);
 
-      this.setState({userContent:<User key={this.state.userId} type='self' name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />});
+      axios.get(url + '/user/' + this.state.userId+'/ratings/', config)
+      .then(response => {
+        console.log(response.data.data);
+        this.setState({ratings:response.data.data});
+        console.log(this.state.ratings);
+
+        this.setState({userContent:<User key={this.state.userId} type='self' name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} ratings={this.state.ratings} />});
+        console.log(this.state.userContent);
+
+
+      })
+      .catch(function(error) {
+        alert('error!');
+        console.log(error);
+      });
+
+//      this.setState({userContent:<User key={this.state.userId} type='self' name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />});
 
       console.log(this.state.userContent);
 
@@ -68,7 +84,7 @@ export class Account extends React.Component {
     //this.insertParam('userid', this.state.userId);
   }
 
-  
+
   getCookie(cname) {
     var name = cname + '=';
     var decodedCookie = decodeURIComponent(document.cookie);

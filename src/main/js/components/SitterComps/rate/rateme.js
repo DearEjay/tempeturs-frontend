@@ -119,6 +119,7 @@ export class RateMe extends React.Component {
             });
 
         this.close();
+        location.reload();
     }
 
 	render() {

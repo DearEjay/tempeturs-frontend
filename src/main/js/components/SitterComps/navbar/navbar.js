@@ -74,21 +74,12 @@ export class NavBar extends React.Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a href="#/sitter/dashboard" className="navbar-brand logo">
-                  </a>
             </div>
             <nav className="collapse navbar-collapse" role="navigation">
-                <form onSubmit={this.handleSubmit}  className="navbar-form navbar-left">
-                    <div className="input-group input-group-sm bs-example">
-                        <input ref="searchText" type="text" className="form-control tt-query" id="typeahead" placeholder="Search..." />
-                        <div className="input-group-btn searchBtn">
-                            <button className="btn btn-default" type="submit"><i className="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
+
                 <ul className="nav navbar-nav">
                     <li>
-                        <a href="#/sitter/dashboard"><i className="fa fa-home"></i> News Feed</a>
+                        <a href="#/sitter/dashboard"><i className="fa fa-home"></i>< img src="http://i66.tinypic.com/347cfft.png" width="300" height="60"/></a>
                     </li>
                 </ul>
 
