@@ -117,7 +117,7 @@ export class RateMe extends React.Component {
               console.log(response);
             })
             .catch(function(error) {
-              alert("error!");
+              alert("error! in rateme");
               console.log(error);
             });
 

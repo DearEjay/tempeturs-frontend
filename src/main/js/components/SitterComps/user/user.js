@@ -18,7 +18,6 @@ export class User extends React.Component {
     this.state = {
       userToken: this.getCookie('usertoken'),
       userId: this.getCookie('userid'),
-      ratingInfo: this.props.userId,
       self: true
     };
 
@@ -111,8 +110,8 @@ export class User extends React.Component {
     if(this.props.classification == 'SITTER' && !self){
       bookingcontent = < BookMe />;
     }
-    if(!self){
-      ratingcontent= <RateMe info={this.state.ratingInfo}/>;
+    if(self){
+      ratingcontent= <RateMe info={this.props.userId}/>;
     }
     if(this.props.city != null || this.props.state != null){
 
@@ -189,7 +188,7 @@ export class User extends React.Component {
       <h3>Rating: </h3>
       </td>
       <td>
-      <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.getRating()} of 5 Stars{' '}
+      <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.getRating} of 5 Stars{' '}
       </td>
       </tr>
       <tr>
