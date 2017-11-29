@@ -55,19 +55,43 @@ export class NotificationList extends React.Component {
   }
 
   dismissall(){
-    
+    var config = {
+      headers: { 'Authorization': "Bearer " + this.state.userToken }
+    };
+
+    const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+     
+
+      var ids = [];
+      const data = this.state.notifications;
+      data.map((d) => ids.push(d.id));
+
+      for(var i = 0; i < ids.length; i++){
+        axios
+        .delete(url + "/user/" + this.state.userId + "/notifications/" + ids[i], config)
+        .then(response => {
+            console.log('deleted the notification');
+            console.log(response);
+            count++;
+        })
+        .catch(function(error) {
+          alert("error! in notification");
+          console.log(error);
+        });
+      }
+      location.reload();
   }
 
   render() {
     const data = this.state.notifications;
     const NotificationList = data.map((d) => <Notification id={d.id} type={d.type} refersToID={d.refersToID} forUserID={d.forUserID} /> );
     var content = null;
-    var click = null;
+    var click = '';
 
     if(data.length == 0){
       content = "You have no new notifications.";
     }else{
-      click = <Button bsStyle={primary} onClick={this.dismissall}>Dismiss All</Button>
+      click = <div><Button bsStyle='primary' onClick={this.dismissall}>Dismiss All</Button><br/><br/></div>;
       content = NotificationList;
     }
 
