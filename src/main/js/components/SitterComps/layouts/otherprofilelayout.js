@@ -50,6 +50,11 @@ export class OtherProfileLayout extends React.Component {
         this.setState({availability:response.data.data.availability.unavailableDays});
         alert('availability for other account success');
 
+        var d = new Date();
+        d.setTime(d.getTime() + (1*24*60*60*1000));
+        var expires = 'expires=' + d.toGMTString();
+        document.cookie = 'sitterschedule' + '=' + response.data.data.availability.unavailableDays + ';' + expires;
+
       })
       .catch(function(error) {
         alert('error!');

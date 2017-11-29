@@ -13,7 +13,8 @@ export  class BookMe extends React.Component {
             userToken: this.getCookie('usertoken'),
   					userId: this.getCookie('userid'),
             sitterId: this.getCookie('otherid'),
-            pets: []
+            pets: [],
+            sitterSchedule: this.getCookie('sitterschedule')
         };
 
         this.open = this.open.bind(this);
@@ -114,31 +115,20 @@ export  class BookMe extends React.Component {
       const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
       //ownner id in url
       // both are created
-      
-      /*
+
+      var config = {
+        headers: { Authorization: 'Bearer ' + this.state.userToken }
+      };
       //post to  sitter
-      axios.post(url+'/user/',user)
+      axios.post(url+'/user/'+this.state.userId+'/bookings/',booking, config)
       .then(function (response) {
-
-          //booking successfully posted to sitter now post to owner
-           return axios.post(url+'/user/login/',auth);
-      })
-      .then((response) => {
-
-        //booking posted to owner...
-        return axios.post(url+'/user/login/',auth);
-        //now update sitter avaliablity with start and end date
-
-      })
-      .then(function (response) {
-
-          //avaliablity updated
+        console.log(response);
 
       })
       .catch(function (error) {
           console.log(error);
       });
-      */
+
     }
 	render() {
     const data = this.state.pets;
