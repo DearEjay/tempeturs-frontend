@@ -30,7 +30,7 @@ export class User extends React.Component {
     if(this.state.userId == this.props.userId){
       this.setState({self:false});
     }
-    if(this.props.classification=='SITTER'){
+    if(this.props.classification=='SITTER' && ratings){
       var ratings = [];
       ratings = this.props.ratings;
       console.log(ratings);
