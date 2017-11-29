@@ -72,7 +72,6 @@ export class NotificationList extends React.Component {
         .then(response => {
             console.log('deleted the notification');
             console.log(response);
-            count++;
         })
         .catch(function(error) {
           alert("error! in notification");
