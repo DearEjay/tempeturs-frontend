@@ -86,6 +86,24 @@ export class AccountEdit extends React.Component {
     //alert('zipchange');
     this.cityState();
   }
+  fileUpload(file){
+			const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+			const formData = new FormData();
+			formData.append('file',file);
+			formData.append('permissions', 'PROTECTED');
+			alert(this.state.userToken);
+			alert(file.name);
+
+			const config = {
+				headers: {
+						'Authorization': 'Bearer ' + this.state.userToken
+				}
+			};
+			// I also tried adding 'content-type': 'multipart/form-data' to the header
+
+
+		return  axios.post(url+'/file/', formData,config);
+	}
 
 
   cityState(){
@@ -149,7 +167,7 @@ export class AccountEdit extends React.Component {
     var zipcode = document.getElementById('userzip').value;
     var classification = document.getElementById('classificationtype').value;
     var email = document.getElementById('useremail').value;
-
+    var rate = document.getElementById('userrate').value;
 
     alert(name + ' ' + city + ' ' + state + ' ' + zipcode + ' ' + email + ' ' + classification);
 
@@ -170,6 +188,7 @@ export class AccountEdit extends React.Component {
       user.address.zipcode = zipcode;
       user.classification = classification;
       user.email = email;
+      user.rate = rate; 
 
       console.log(user);
 
@@ -177,7 +196,7 @@ export class AccountEdit extends React.Component {
       .then(response => {
           alert('Account updated!');
           console.log(response);
-          location.reload(); 
+          location.reload();
       });
     })
     .catch(function(error) {
@@ -206,22 +225,25 @@ export class AccountEdit extends React.Component {
     <h1>Edit Profile</h1>
 
 	<div class="row">
-      <div class="col-md-3">
+    {/*   <div class="col-md-3">
         <div class="text-center">
           <img src="//placehold.it/100" class="avatar img-circle" alt="avatar" />
           <h6>Upload a different avatar...</h6>
 
-          <input type="file" accept="image/*" class="form-control" />
+          <input type="file" accept="image/*" class="form-control" onChange={(e) => this.setState({ file: e.target.files[0] })} />
+
+
         </div>
       </div>
 
 
+*/}
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
+        {/*<div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a>
           <i class="fa fa-coffee"></i>
           <strong>only image files accepted! </strong>
-        </div>
+        </div> */}
         <h3>Personal info</h3>
 
         <form class="form-horizontal" role="form">
@@ -239,7 +261,7 @@ export class AccountEdit extends React.Component {
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <label class="col-lg-3 control-label">Zipcode:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="number" value={this.state.rate} onChange={(e) => this.setState({rate: e.target.value})} />
+              <input class="form-control" type="number" id='userrate' value={this.state.rate} onChange={(e) => this.setState({rate: e.target.value})} />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <input class="form-control" type="number" id='userzip' value={this.state.zipcode} onChange={(e) => {this.handleChange(e);}} />
