@@ -10,6 +10,8 @@ import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import {RatingList} from 'js/components/SitterComps/rate/ratinglist.js';
 import axios, {get} from 'axios';
+import Rater from 'react-rater';
+
 
 export class User extends React.Component {
   constructor(props) {
@@ -18,35 +20,37 @@ export class User extends React.Component {
     this.state = {
       userToken: this.getCookie('usertoken'),
       userId: this.getCookie('userid'),
-      self: true
+      ratingInfo: this.props.userId,
+      self: true,
+      rating: null
     };
 
-    this.insertParam = this.insertParam.bind(this);
-    this.getRating = this.getRating.bind(this);
-    
+
+
     if(this.state.userId == this.props.userId){
       this.setState({self:false});
     }
-
-  }
-  insertParam(key, value){
-    key = encodeURI(key); value = encodeURI(value);
-
-    var kvp = document.location.search.substr(1).split('?');
-
-    var i=kvp.length; var x; while(i--)
-    {
-      x = kvp[i].split('=');
-
-      if (x[0]==key)
-      {
-        x[1] = value;
-        kvp[i] = x.join('=');
-        break;
+    if(this.props.classification=='SITTER'){
+      var ratings = [];
+      ratings = this.props.ratings;
+      console.log(ratings);
+      alert('length ' + ratings.length);
+      this.ret = 0;
+      for(var i = 0; i < ratings.length; i++){
+        this.ret += ratings[i].stars;
       }
+      alert(this.ret);
+      if(ratings.length != 0){
+        this.ret = (this.ret/ratings.length).toFixed(2);
+      }
+      alert(this.ret);
+
+      console.log('average rating'+ this.ret);
+      console.log(this.props.ratings);
+
+      this.setState({rating: this.ret});
     }
   }
-
   getCookie(cname) {
     var name = cname + '=';
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -63,62 +67,36 @@ export class User extends React.Component {
     return '';
   }
 
-  getRating(){
-    var config = {
-      headers: { Authorization: "Bearer " + this.state.userToken }
-    };
-
-    const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
-
-    var ratings = [];
-
-    axios
-      .get(url + "/user/" + this.props.userId + "/ratings/", config)
-      .then(response => {
-        console.log(response);
-        console.log("got the ratings");
-        ratings = response.data.data;
-      })
-      .catch(function(error) {
-        alert("error!");
-        console.log(error);
-      });
-
-      var ret = 0;
-    for(var i = 0; i < ratings.length; i++){
-      ret += ratings[i].stars;
-    }
-    if(ratings.length != 0){
-      ret = ret/ratings.length;
-    }
-
-    return ret;
-  }
 
   render() {
     const imageUrl= this.props.image + '?token=' + this.state.userToken;
     var bookingcontent = null;
     var ratingcontent = null;
+    var rater = null;
     var citystatecontent = null;
     var self = true;
-    if(this.state.userId != this.props.userId && this.props.userId){
+    if(this.props.type=='other'){
       self = false;
       console.log("you are not yourself");
       console.log(this.state.userId);
-      console.log(this.props.userId);
+      console.log(this.props.key);
+      //console.log(self);
     }
-    if(this.props.classification == 'SITTER' && !self){
+    if(this.props.classification == 'SITTER' && this.props.type =='other'){
       bookingcontent = < BookMe />;
     }
-    if(self){
-      ratingcontent= <RateMe info={this.props.userId}/>;
+    if(this.props.classification == 'SITTER'){
+      rater = <tr> <td><h3>Rating: </h3></td><td><br/> &nbsp;&nbsp;&nbsp;&nbsp;<Rater total={5} rating={this.ret} interactive={false} /><br/>{this.ret} of 5 Stars{' '}</td></tr>;
+    }
+    if(this.props.type=='other'){
+      ratingcontent= <RateMe info={this.state.ratingInfo}/>;
     }
     if(this.props.city != null || this.props.state != null){
 
       citystatecontent = <h1>{this.props.city}, {this.props.state} </h1>;
     }
 
-    
+
     return (
       <div className='row'>
       <div className='col-md-2 hidden-xs' align='center'>
@@ -152,7 +130,7 @@ export class User extends React.Component {
       </td>
       <td>
       <h1>
-      
+
       {ratingcontent}
       </h1>
       </td>
@@ -183,14 +161,7 @@ export class User extends React.Component {
       <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.props.classification}{' '}
       </td>
       </tr>
-      <tr>
-      <td>
-      <h3>Rating: </h3>
-      </td>
-      <td>
-      <br /> &nbsp;&nbsp;&nbsp;&nbsp;{this.getRating} of 5 Stars{' '}
-      </td>
-      </tr>
+      {rater}
       <tr>
         <td>
         <br /><br />  &nbsp;&nbsp;&nbsp;&nbsp; <RatingList id={this.props.userId} />

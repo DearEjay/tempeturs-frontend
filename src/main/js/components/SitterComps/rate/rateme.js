@@ -1,10 +1,7 @@
 import React from 'react';
 import { Button, Modal, Panel } from 'react-bootstrap';
 import axios, { post } from "axios";
-
-
 import Rater from 'react-rater';
-import 'react-rater/lib/react-rater.scss';
 
 export class RateMe extends React.Component {
 
@@ -23,13 +20,13 @@ export class RateMe extends React.Component {
         this.close = this.close.bind(this);
         this.submitRating = this.submitRating.bind(this);
         this.handleRate = this.handleRate.bind(this);
-        
+
         var config = {
             headers: { Authorization: "Bearer " + this.state.userToken }
           };
-      
-          const url = "https://group-3-tempeturs-backend.herokuapp.com/api";      
-      
+
+          const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+
         //   axios
         //     .get(url + "/user/" + this.state.userId, config)
         //     .then(response => {
@@ -76,14 +73,14 @@ export class RateMe extends React.Component {
         if(e.nativeEvent.type == 'click'){
             console.log("rating: "+e.rating);
             this.setState({val: e.rating});
-        }        
+        }
     }
 
     submitRating(e){
         e.preventDefault();
 
         // make sure we got all of the values from the form
-        
+
         var num = this.state.val;
         var comments = document.getElementById("comments").value;
         alert(num);
@@ -93,7 +90,7 @@ export class RateMe extends React.Component {
         //     "stars":1,
         //     "comments":"This person sucked.",
         //     "fromUserID":"b5e10c61-3119-436f-a8f6-f27e827e16eb"
-        // }        
+        // }
 
         var rating = {
             "stars": num,
@@ -106,12 +103,12 @@ export class RateMe extends React.Component {
         var config = {
             headers: { 'Authorization': "Bearer " + this.state.userToken }
           };
-      
+
           const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
 
         // GET THE USER ID OF THE PROFILE YOU'RE ON
           axios
-            .post(url + "/user/" + this.props.info + "/ratings/", rating, config)
+            .post(url + "/user/" + this.getCookie('otherid') + "/ratings/", rating, config)
             .then(response => {
                 console.log("successfully added a rating");
               console.log(response);

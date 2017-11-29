@@ -2,6 +2,7 @@
 import React from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 export class Header extends React.Component {
@@ -46,8 +47,10 @@ export class Header extends React.Component {
       window.location.replace('#/sitter/dashboard');
     })
     .catch(function (error) {
-      alert('database error');
-      alert(error);
+      toast.error('Invalid email address or password. Please try again!', {
+          position: toast.POSITION.TOP_RIGHT
+      });
+      //alert(error);
     });
 
 
