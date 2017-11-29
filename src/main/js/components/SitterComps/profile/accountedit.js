@@ -6,7 +6,6 @@ import { StatusForm } from 'js/components/SitterComps/main/statusform.js';
 import { PetList } from 'js/components/PetList.js';
 import { FileInput } from 'react-file-input';
 import { BookMe } from 'js/components/SitterComps/bookme/bookme.js';
-import { StarRating } from 'js/components/SitterComps/rate/StarRating.js';
 import { RateMe } from 'js/components/SitterComps/rate/rateme.js';
 import axios, {get} from 'axios';
 import { User } from 'js/components/SitterComps/user/user.js';
@@ -96,8 +95,11 @@ export class AccountEdit extends React.Component {
     if(isValidZip.test(zipcode)){
       const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
       const url1 = '&sensor=true';
+      var config = {
+        headers: { Authorization: 'Bearer ' + this.state.userToken }
+      };
       //alert(url+zipcode+url1);
-      axios.get(url+zipcode+url1)
+      axios.get(url+zipcode+url1, config)
         .then(response => {
           //('gotzip');
           console.log(response);
@@ -112,9 +114,9 @@ export class AccountEdit extends React.Component {
           }
         })
         .catch(function(error) {
-          toast.error(error, {
+          /*toast.error(error, {
               position: toast.POSITION.BOTTOM_RIGHT
-          });
+          });*/
           console.log(error);
         });
     }
