@@ -22,7 +22,7 @@ export class RatingList extends React.Component {
     const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
 
     axios
-      .get(url + "/user/" + this.props.id + "/ratings/", config)
+      .get(url + "/user/" + this.getCookie('otherid') + "/ratings/", config)
       .then(response => {
           console.log("got the rating list for this user");
         console.log(response);
@@ -49,19 +49,12 @@ export class RatingList extends React.Component {
     }
     return "";
   }
-  close() {
-    this.setState({ showModal: false });
-  }
-
-  open() {
-    this.setState({ showModal: true });
-  }
 
   render() {
     const data = this.state.ratings;
     const RatingList = data.map((d) => <Rating key={d.id} stars={d.stars} comments={d.comments} fromUserId={d.fromUserID} /> );
     return (
-      <Panel className="ratinglist">
+      <Panel header="Ratings For This User" className="ratinglist">
         {RatingList}
       </Panel>
     );

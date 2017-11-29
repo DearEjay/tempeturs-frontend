@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Thumbnail, Button, Modal, Panel, Image } from "react-bootstrap";
 import axios, { get } from "axios";
+import {Notification} from './Notification.js';
 
-export class Notifications extends React.Component {
+
+export class NotificationList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,6 +16,8 @@ export class Notifications extends React.Component {
       notifications: []
     };
 
+    this.dismissall = this.dismissall.bind(this);
+
     var config = {
       headers: { 'Authorization': "Bearer " + this.state.userToken }
     };
@@ -21,14 +25,15 @@ export class Notifications extends React.Component {
     const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
 
     axios
-      .get(url + "/user/" + this.props.id + "/notifications/", config)
+      .get(url + "/user/" + this.state.userId + "/notifications/", config)
       .then(response => {
-          console.log("got the rating list for this user");
+        alert("got the notification list for this user");
+        console.log("got the notification list for this user");
         console.log(response);
-        this.setState({ratings:response.data.data});
+        this.setState({notifications:response.data.data});
       })
       .catch(function(error) {
-        alert("error! in rating list");
+        alert("error! in notification list");
         console.log(error);
       });
   }
@@ -48,20 +53,29 @@ export class Notifications extends React.Component {
     }
     return "";
   }
-  close() {
-    this.setState({ showModal: false });
-  }
 
-  open() {
-    this.setState({ showModal: true });
+  dismissall(){
+    
   }
 
   render() {
-    const data = this.state.ratings;
-    const RatingList = data.map((d) => <Rating key={d.id} stars={d.stars} comments={d.comments} fromUserId={d.fromUserID} /> );
+    const data = this.state.notifications;
+    const NotificationList = data.map((d) => <Notification id={d.id} type={d.type} refersToID={d.refersToID} forUserID={d.forUserID} /> );
+    var content = null;
+    var click = null;
+
+    if(data.length == 0){
+      content = "You have no new notifications.";
+    }else{
+      click = <Button bsStyle={primary} onClick={this.dismissall}>Dismiss All</Button>
+      content = NotificationList;
+    }
+
+
     return (
-      <Panel className="ratinglist">
-        {RatingList}
+      <Panel className="notificationlist">
+        {click}
+        {content}
       </Panel>
     );
   }

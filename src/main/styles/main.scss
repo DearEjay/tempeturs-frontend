@@ -551,6 +551,17 @@ small.text-muted { font-family: courier, courier-new, monospace }
     height:400px;
 }
 
+.notificationlist {
+    align-content: center;
+    overflow-y: scroll;
+    height:400px;
+}
+
+#notificationdismiss {
+    font-style: italic;
+    color: gray;
+}
+
 .one {
     background-color: yellow;
 }

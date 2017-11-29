@@ -38,7 +38,8 @@ export class Rating extends React.Component {
 			<div>
                 <Rater interactive={false} total={5} rating={this.props.stars} />
                 <br />
-                <b>Comments:</b> {comments}
+				<b>Comments:</b> {comments}
+				<br/><br/>
 			</div>
 
 		);
