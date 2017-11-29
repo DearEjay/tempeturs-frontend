@@ -37,7 +37,7 @@ export class NavBar extends React.Component {
         console.log(error);
     });
 
-    
+
   }
 
   getCookie(cname) {
@@ -56,6 +56,11 @@ export class NavBar extends React.Component {
       return '';
   }
 
+  clearCookies(){
+    document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'usertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+  }
   render(){
 
     var name = ' ' + this.state.userName;
@@ -90,8 +95,8 @@ export class NavBar extends React.Component {
 
                 <ul  className="nav navbar-nav navbar-right">
                     <DropdownButton  bsStyle="default" className="glyphicon glyphicon-user"  title={name} noCaret id="dropdown-no-caret">
-                    <li><a href="/profile"><MenuItem eventKey="1" active >Edit Profile</MenuItem></a></li>
-                    <li><a href="#/sitter"><MenuItem eventKey="2"  active>Logout</MenuItem></a></li>
+                    <li><a href="#/sitter/user/editprofile"><MenuItem eventKey="1" active >Edit Profile</MenuItem></a></li>
+                    <li><a href="#/sitter" onClick={this.clearCookies}><MenuItem eventKey="2"  active>Logout</MenuItem></a></li>
                     </DropdownButton>
                 </ul>
             </nav>

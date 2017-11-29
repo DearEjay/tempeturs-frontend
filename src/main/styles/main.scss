@@ -547,6 +547,8 @@ small.text-muted { font-family: courier, courier-new, monospace }
 
 .petlist {
     align-content: center;
+    overflow-y: scroll;
+    height:400px;
 }
 
 .one {
@@ -577,3 +579,60 @@ small.text-muted { font-family: courier, courier-new, monospace }
   .star.selected {
   background-color: red;
   }
+
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .filter {
+    margin: 50px auto;
+    width: 70%;
+  }
+
+  .filter-menu {
+    text-align: center;
+  }
+
+  .filter-results {
+    margin-top: 30px;
+  }
+
+  .blocks > * {
+    animation: flyIn 0.5s linear;
+    border: 1px solid #000000;
+    display: inline-block;
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+
+  .blocks_3up > * {
+    width: 33.333333%;
+  }
+
+  .feature {
+    padding: 20px 5px;
+    text-align: center;
+    transition: all 0.3s linear;
+  }
+
+  .feature:hover {
+    background: #3b5999;
+    color: white;
+  }
+
+  .feature-bd,
+  .feature-ft {
+    margin-top: 20px;
+  }
+
+  @-webkit-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+     @-moz-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+       @-o-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+          @keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
