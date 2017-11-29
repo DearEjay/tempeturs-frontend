@@ -2,7 +2,6 @@ import React from 'react';
 import { Thumbnail, Button, Modal, Panel, Image } from 'react-bootstrap';
 
 import Rater from 'react-rater';
-import 'react-rater/lib/react-rater.scss';
 
 export class Rating extends React.Component {
 

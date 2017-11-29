@@ -73,7 +73,7 @@ div.ejay{
     text-align: left;
 }
 .navbar-static-top {
-    background-color: #2b5386;
+    background-color: black;
     color: #fff;
 }
 .sidebar-link {
@@ -118,7 +118,7 @@ hr { border-color: #dedede }
 .divider { margin-top: 32px }
 .navbar-blue {
     border-width: 0;
-    background-color: #3B5999;
+    background-color: black;
     color: #ffffff;
     font-family: arial, sans-serif;
     top: 0;
@@ -127,7 +127,7 @@ hr { border-color: #dedede }
 }
 .navbar-blue li > a,
 .navbar-toggle { color: #efefef }
-.navbar-blue .dropdown-menu li a { color: #2A4888 }
+.navbar-blue .dropdown-menu li a { color: black }
 .navbar-blue .dropdown-menu li > a { padding-left: 30px }
 .navbar-blue li > a:hover,
 .navbar-blue li > a:focus,
@@ -135,7 +135,7 @@ hr { border-color: #dedede }
 .navbar-blue .open > a,
 .navbar-blue .open > a:hover,
 .navbar-blue .open > a:focus {
-    background-color: #2A4888;
+    background-color: black;
     color: #fff;
 }
 
@@ -619,7 +619,7 @@ small.text-muted { font-family: courier, courier-new, monospace }
   }
 
   .feature:hover {
-    background: #3b5999;
+    background: black;
     color: white;
   }
 
@@ -636,3 +636,28 @@ small.text-muted { font-family: courier, courier-new, monospace }
   transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
           @keyframes flyIn { from { opacity:0;
   transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+
+
+  .react-rater {
+    display: inline-block;
+    line-height: normal; }
+    .react-rater > * {
+      display: inline-block; }
+
+  .react-rater-star {
+    cursor: pointer;
+    color: #ccc;
+    position: relative; }
+    .react-rater-star.will-be-active {
+      color: #666; }
+    .react-rater-star.is-active {
+      color: #000; }
+    .react-rater-star.is-active-half:before {
+      color: #000;
+      content: '\2605';
+      position: absolute;
+      left: 0;
+      width: 50%;
+      overflow: hidden; }
+    .react-rater-star.is-disabled {
+      cursor: default; }

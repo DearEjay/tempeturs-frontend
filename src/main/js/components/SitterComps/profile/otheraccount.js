@@ -24,7 +24,7 @@ export class OtherAccount extends React.Component {
       city: 'somewhere',
       state: 'crazy',
       userContent: null,
-      rating: 0
+      ratings: []
       //    const currentUser = <User key={this.state.name} name={this.state.name} image={this.state.image} city={this.state.city} state={this.state.state} rate={this.state.rate} classification={this.state.classification} />;
 
     };
@@ -57,9 +57,26 @@ export class OtherAccount extends React.Component {
       console.log(this.state.image);
       console.log(this.state.rate);
 
-      this.setState({userContent:<User key={this.state.userId} name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} rating={this.state.rating}/>});
+      axios.get(url + '/user/' + this.state.userId+'/ratings/', config)
+      .then(response => {
+        console.log(response.data.data);
+        this.setState({ratings:response.data.data});
+        console.log(this.state.ratings);
 
-      console.log(this.state.userContent);
+        this.setState({userContent:<User key={this.state.userId} type='other' name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} ratings={this.state.ratings} />});
+        console.log(this.state.userContent);
+
+
+      })
+      .catch(function(error) {
+        alert('error!');
+        console.log(error);
+      });
+
+      console.log(this.state.ratings);
+
+
+
 
 
 
@@ -69,32 +86,11 @@ export class OtherAccount extends React.Component {
       console.log(error);
     });
 
+    //get ratings
 
     //this.insertParam('userid', this.state.userId);
   }
 
-  insertParam(key, value){
-    key = encodeURI(key); value = encodeURI(value);
-
-    var kvp = document.location.search.substr(1).split('?');
-
-    var i=kvp.length; var x; while(i--)
-    {
-      x = kvp[i].split('=');
-
-      if (x[0]==key)
-      {
-        x[1] = value;
-        kvp[i] = x.join('=');
-        break;
-      }
-    }
-
-    if(i<0) {kvp[kvp.length] = [key,value].join('=');}
-
-    //this will reload the page, it's likely better to store this until finished
-    document.location.search = kvp.join('?');
-  }
 
   getCookie(cname) {
     var name = cname + '=';
