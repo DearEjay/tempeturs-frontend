@@ -256,7 +256,7 @@ export class PetList extends React.Component {
 								<input type="number" placeholder="Age (years)" id="ageyears" required />
 								<br /><br />
 
-								<label><b>Image</b></label>
+								<label><b>Image (JPG only)</b></label>
 									    <input type="file" accept="image/*" onChange={this.onChange} />
 								<br />
 
