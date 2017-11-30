@@ -61,24 +61,17 @@ export class NotificationList extends React.Component {
 
     const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
      
-
-      var ids = [];
-      const data = this.state.notifications;
-      data.map((d) => ids.push(d.id));
-
-      for(var i = 0; i < ids.length; i++){
-        axios
-        .delete(url + "/user/" + this.state.userId + "/notifications/" + ids[i], config)
-        .then(response => {
-            console.log('deleted the notification');
-            console.log(response);
-        })
-        .catch(function(error) {
-          alert("error! in notification");
-          console.log(error);
-        });
-      }
-      location.reload();
+      axios
+      .delete(url + "/user/" + this.state.userId + "/notifications/", config)
+      .then(response => {
+        alert("notifications cleared");
+        console.log(response);
+        location.reload();
+      })
+      .catch(function(error) {
+        alert("error! in notification list");
+        console.log(error);
+      });
   }
 
   render() {

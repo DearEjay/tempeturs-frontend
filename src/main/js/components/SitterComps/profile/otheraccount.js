@@ -69,7 +69,7 @@ export class OtherAccount extends React.Component {
 
       })
       .catch(function(error) {
-        alert('error!');
+        alert('error! in otheraccount');
         console.log(error);
       });
 
@@ -82,7 +82,7 @@ export class OtherAccount extends React.Component {
 
     })
     .catch(function(error) {
-      alert('error!');
+      alert('error! in otheraccount');
       console.log(error);
     });
 

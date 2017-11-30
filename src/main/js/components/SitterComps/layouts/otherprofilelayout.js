@@ -10,10 +10,6 @@ import { OtherAccount } from 'js/components/SitterComps/profile/otheraccount.js'
 import BookingCalendar from 'react-booking-calendar';
 import axios, { post } from "axios";
 
-
-
-
-
 const bookings = [
   new Date(2017,10, 1),
   new Date(2017, 11, 2),
@@ -23,7 +19,6 @@ const bookings = [
   new Date(2017, 11, 11),
   new Date(2017, 11, 12),
 ];
-
 
 export class OtherProfileLayout extends React.Component {
 
@@ -41,18 +36,21 @@ export class OtherProfileLayout extends React.Component {
       };
 
       const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
+
       alert('otherid ');
       alert(this.state.userId);
       alert(this.state.userToken);
 
       axios.get(url + '/user/' + this.state.userId, config)
       .then(response => {
+          console.log('hello');
+          console.log(response);
         this.setState({availability:response.data.data.availability.unavailableDays});
         alert('availability for other account success');
 
       })
       .catch(function(error) {
-        alert('error!');
+        alert('error! in other profile layout');
         console.log(error);
       });
     }

@@ -10,10 +10,49 @@ export class Notification extends React.Component {
 
 		this.state = {
 			userToken: this.getCookie('usertoken'),
-            userId: this.getCookie('userid')
+            userId: this.getCookie('userid'),
+            booking: null,
+            bookingname: ''
         };
         
-        this.dismiss = this.dismiss.bind(this);      
+        this.dismiss = this.dismiss.bind(this); 
+        this.accept = this.accept.bind(this); 
+        this.reject = this.reject.bind(this); 
+        
+        var config = {
+            headers: { 'Authorization': "Bearer " + this.state.userToken }
+        };
+
+        const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+        
+        axios
+        .get(url + "/user/" + this.state.userId + "/bookings/" + this.props.refersToID, config)
+        .then(response => {
+            console.log('got the booking');
+            console.log(response);
+            this.setState({booking:response.data.data});
+
+            console.log('booking');
+            console.log(this.state.booking);
+            
+            // GET THE USER ASSOCIATED WITH A BOOKING
+            axios
+            .get(url + "/user/" + this.state.booking.ownerID, config)
+            .then(response => {
+                console.log('got the user associated with the booking');
+                console.log(response);
+                this.setState({bookingname:response.data.data.name});
+            })
+            .catch(function(error) {
+                alert("error! in notification (get booking, get user)");
+                console.log("error! in notification (get booking, get user)");
+                console.log(error);
+            });
+        })
+        .catch(function(error) {
+           alert("error! in notification (get booking)");
+           console.log(error);
+        });
 
 	}
 
@@ -61,6 +100,10 @@ export class Notification extends React.Component {
 
     accept(){
         console.log('accept');
+        // TODO
+        // change status to accepted
+        // update the unavailable days
+        // remind the owner
     }
 
     reject(){
@@ -69,7 +112,7 @@ export class Notification extends React.Component {
         var rating = {
             "stars": 0,
             "comments": "CANCELLED BOOKING",
-            "fromUserID": null
+            "fromUserID": this.state.userId
         };
 
         var config = {
@@ -77,48 +120,78 @@ export class Notification extends React.Component {
           };
       
           const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
-    
-          axios
-          .post(url + "/user/" + this.getCookie('otherid') + "/ratings/", rating, config)
-          .then(response => {
-              console.log("successfully added a rating");
-            console.log(response);
-          })
-          .catch(function(error) {
-            alert("error! in rateme");
-            console.log(error);
-          });
 
+          var booking = this.state.booking;
+
+          booking.status = 'CANCELED';
+
+          console.log(booking);
+          console.log(this.state.userToken);
+          console.log(this.state.userId);
+
+          // update the booking to canceled
           axios
-          .delete(url + "/user/" + this.state.userId + "/notifications/" + this.props.id, config)
+          .put(url+'/user/'+this.state.userId+'/bookings/'+booking.id, booking, config)
           .then(response => {
-              console.log('deleted the notification');
-              console.log(response);
-              location.reload();
+              alert('the booking was cancelled');
+
+              // add a rating of zero to the user
+                axios
+                .post(url + "/user/" + this.state.userId + "/ratings/", rating, config)
+                .then(response => {
+                    console.log("successfully added a rating");
+                    alert("successfully added a rating");
+                    console.log(response);
+
+                    // delete the notification
+                        axios
+                        .delete(url + "/user/" + this.state.userId + "/notifications/" + this.props.id, config)
+                        .then(response => {
+                            console.log('deleted the notification');
+                            console.log(response);
+                            location.reload();
+                        })
+                        .catch(function(error) {
+                            alert("error! in notification");
+                            console.log(error);
+                        });
+                })
+                .catch(function(error) {
+                    alert("error! in notification -> post cancel rating");
+                    console.log(error);
+                });                
           })
-          .catch(function(error) {
-            alert("error! in notification");
-            console.log(error);
+          .catch(function(error){
+              alert('error! in notification -> put booking');
+              console.log(error);
           });
+    
+          
+
+          
     }
 
 	render() {
-        const type = "NEW "+this.props.type;
-        var buttons = 
-        <div>
-            <br/>
-            <Button bsStyle='success' onClick={this.accept}>Accept</Button>
-            <br/><br/>
-            <Button bsStyle='danger' onClick={this.reject}>Reject</Button>
-        </div>;
+        var content = null;
+        var buttons = null; 
 
         if(this.props.type == "RATING"){
-            buttons = <span id="notificationdismiss">Click to dismiss</span>;
-        }
+            content = <div onClick={this.dismiss}>New Rating! ~ <span id="notificationdismiss">Click to dismiss</span></div>;
+         }else if(this.props.type == "BOOKING"){
+             buttons = 
+             <div>
+                 <br/>
+                 <Button bsStyle='success' onClick={this.accept}>Accept</Button>&nbsp;
+                 <Button bsStyle='danger' onClick={this.reject}>Reject</Button>
+             </div>;
+
+             content = <div>Booking from {this.state.bookingname}<br/>{buttons}</div>;
+         }
+        
 
 		return (
-			<Panel onClick={this.dismiss}>
-                {type} !!! {buttons}
+			<Panel>
+                {content}
 			</Panel>
 		);
 	}
