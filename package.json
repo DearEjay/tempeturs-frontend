@@ -13,6 +13,9 @@
     "serve-prod": "NODE_ENV=production node server.js",
     "watch": "webpack --watch"
   },
+  "engines": {
+    "node": "9.1.0"
+  },
   "jest": {
     "roots": [
       "<rootDir>/build/tests"
