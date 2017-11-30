@@ -112,14 +112,13 @@ export class RateMe extends React.Component {
             .then(response => {
                 console.log("successfully added a rating");
               console.log(response);
+              location.reload();
             })
             .catch(function(error) {
               alert("error! in rateme");
               console.log(error);
             });
-
-        this.close();
-        location.reload();
+        
     }
 
 	render() {

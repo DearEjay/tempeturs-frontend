@@ -104,6 +104,28 @@ export class Notification extends React.Component {
         // change status to accepted
         // update the unavailable days
         // remind the owner
+
+        var booking = this.state.booking;
+        
+        booking.status = 'ACCEPTED';
+        
+        var config = {
+            headers: { 'Authorization': "Bearer " + this.state.userToken }
+          };
+      
+          const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
+
+        axios
+        .put(url+'/user/'+this.state.userId+'/bookings/'+booking.id, booking, config)
+        .then(response => {
+            alert('the booking was accepted');         
+            console.log(response);           
+        })
+        .catch(function(error){
+            alert('error! in notification -> put booking');
+            console.log(error);
+        });
+
     }
 
     reject(){
@@ -178,14 +200,20 @@ export class Notification extends React.Component {
         if(this.props.type == "RATING"){
             content = <div onClick={this.dismiss}>New Rating! ~ <span id="notificationdismiss">Click to dismiss</span></div>;
          }else if(this.props.type == "BOOKING"){
+             var accepted = false;
+
              buttons = 
              <div>
                  <br/>
-                 <Button bsStyle='success' onClick={this.accept}>Accept</Button>&nbsp;
+                 <Button bsStyle='success' onClick={this.accept} onClick={accepted=true}>Accept</Button>&nbsp;
                  <Button bsStyle='danger' onClick={this.reject}>Reject</Button>
              </div>;
 
-             content = <div>Booking from {this.state.bookingname}<br/>{buttons}</div>;
+            if(!accepted){
+                content = <div>Booking from {this.state.bookingname}<br/>{buttons}</div>;
+            }else{
+                content = <div>Booking Accepted for {this.state.booking.startDate} to {this.state.booking.endDate}</div>;
+            }
          }
         
 
