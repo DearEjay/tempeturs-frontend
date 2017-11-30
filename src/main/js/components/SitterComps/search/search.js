@@ -221,11 +221,12 @@ export class ProductFilter extends React.Component {
     var content = null;
 
     products1.map((product) =>
-
-
       results.push(
-        <Product key={product.id} name={product.name} rate={product.rate} city={product.address.city} state={product.address.state} />
+        <Product  key={product.id} id={product.id} name={product.name} rate={product.rate}  />
       )
+
+
+
 
     );
 
@@ -295,7 +296,7 @@ class Product extends React.Component {
           <div className="feature-bd">
             <p>Rate: ${this.props.rate}</p>
           </div>
-        
+          
         </div>
       </li>
     );
