@@ -20,14 +20,14 @@ export class ProductFilter extends React.Component {
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
 
-    axios.get(url + '/search/', config)
+    axios.get(url + '/search', config)
     .then(response => {
-     alert('search success');
+     console.log('search success');
      console.log(response);
      this.setState({prods:response.data.data});
     })
     .catch(function(error) {
-      alert('search error!');
+      console.log('search error!');
       console.log(error);
     });
 
@@ -124,9 +124,9 @@ class Product extends React.Component {
     super(props);
   }
   here(id,name){
-    alert('clicked worked after change');
-    alert(id);
-    alert(name);
+    console.log('clicked worked after change');
+    console.log(id);
+    console.log(name);
     var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));
     var expires = 'expires=' + d.toGMTString();

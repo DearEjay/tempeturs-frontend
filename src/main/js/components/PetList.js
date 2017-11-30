@@ -45,13 +45,13 @@ export class PetList extends React.Component {
 
 			axios.get(url + '/user/' + this.state.userId +'/pets/', config)
 				.then(response => {
-					alert('pets fetched!');
+					console.log('pets fetched!');
 					console.log(response);
 					this.setState({pets:response.data.data});
 
 				})
 				.catch(function(error) {
-					alert('pets not fetched!');
+					console.log('pets not fetched!');
 					console.log(error);
 				});
 
@@ -95,8 +95,8 @@ export class PetList extends React.Component {
 			const formData = new FormData();
 			formData.append('file',file);
 			formData.append('permissions', 'PROTECTED');
-			alert(this.state.userToken);
-			alert(file.name);
+			console.log(this.state.userToken);
+			console.log(file.name);
 
 			const config = {
 				headers: {
@@ -111,7 +111,7 @@ export class PetList extends React.Component {
 	otherFormSubmit(){
 		var sel = document.getElementById('deletepets');
 		var petID= sel.options[sel.selectedIndex].value;
-		alert(petID);
+		console.log(petID);
 		var url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
 		var masterURL = url + '/user/' + this.state.userId+ '/pets/'+ petID;
 
@@ -119,15 +119,15 @@ export class PetList extends React.Component {
 			headers: {'Authorization': 'Bearer ' + this.state.userToken}
 		};
 
-		alert(masterURL);
+		console.log(masterURL);
 		axios.delete(masterURL,config)
 		.then((response) => {
-			 alert('success');
+			 console.log('success');
 			 console.log(response);
 			 location.reload();
 		})
 		.catch(function (error) {
-			 alert('delete pet error!');
+			 console.log('delete pet error!');
 				console.log(error);
 		});
 
@@ -136,30 +136,30 @@ export class PetList extends React.Component {
 
 	onFormSubmit(e){
     e.preventDefault(); // Stop form submit
-		alert('Filename ' + this.state.file.name);
+		console.log('Filename ' + this.state.file.name);
 
 
 		var petName = document.getElementById('petname').value;
-		alert(petName);
+		console.log(petName);
 		var petAge  = document.getElementById('ageyears').value;
-		alert(petAge);
+		console.log(petAge);
 		var petType = document.getElementById('typeofpet').value;
-		alert(petType);
+		console.log(petType);
 		var petSex;
 		if (document.getElementById('male').checked) {
   		 petSex = document.getElementById('male').value;
 		}else if (document.getElementById('female').checked) {
 			 petSex  =  document.getElementById('female').value;
 		}
-		alert(petSex);
+		console.log(petSex);
 
 
 		 this.fileUpload(this.state.file).then((response)=>{
-			  alert('Image Url: \n' + response.data.data);
+			  console.log('Image Url: \n' + response.data.data);
 
        	this.setState({addImage:response.data.data});
 
-				alert('Image Url: \n' + this.state.addImage);
+				console.log('Image Url: \n' + this.state.addImage);
 
 
 
@@ -179,19 +179,19 @@ export class PetList extends React.Component {
 
 						axios.post(url+'/user/'+this.state.userId+'/pets/' ,pet, config)
 						 .then((response) => {
-							  alert('success');
+							  console.log('success');
 								console.log(response);
 								location.reload();
 						 })
 						 .catch(function (error) {
-							 	alert('error!');
+							 	console.log('error!');
 								 console.log(error);
 						 });
 
 
      })
  		.catch(function (error) {
-				alert('error');
+				console.log('error');
  				console.log(error);
  		});
 

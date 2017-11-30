@@ -28,13 +28,13 @@ export  class BookMe extends React.Component {
   			};
         axios.get(url + '/user/' + this.state.userId +'/pets/', config)
   				.then(response => {
-  					alert('users pets fetched!');
+  					console.log('users pets fetched!');
   					console.log(response);
   					this.setState({pets:response.data.data});
 
   				})
   				.catch(function(error) {
-  					alert('users pets not fetched!');
+  					console.log('users pets not fetched!');
   					console.log(error);
   				});
     }
@@ -123,6 +123,7 @@ export  class BookMe extends React.Component {
       axios.post(url+'/user/'+this.state.userId+'/bookings/',booking, config)
       .then(function (response) {
         console.log(response);
+        window.location.reload();
 
       })
       .catch(function (error) {

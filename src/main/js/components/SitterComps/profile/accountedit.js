@@ -38,12 +38,12 @@ export class AccountEdit extends React.Component {
       headers: { Authorization: 'Bearer ' + this.state.userToken }
     };
 
-  //  alert(this.state.userToken);
+  //  console.log(this.state.userToken);
 
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
-    //alert(this.state.userId);
-    //alert(this.state.userToken);
+    //console.log(this.state.userId);
+    //console.log(this.state.userToken);
 
     axios.get(url + '/user/' + this.state.userId, config)
     .then(response => {
@@ -74,7 +74,7 @@ export class AccountEdit extends React.Component {
 
     })
     .catch(function(error) {
-      alert('error!');
+      console.log('error!');
       console.log(error);
     });
 
@@ -83,7 +83,7 @@ export class AccountEdit extends React.Component {
 
   handleChange(e){
     this.setState({zipcode: e.target.value});
-    //alert('zipchange');
+    //console.log('zipchange');
     this.cityState();
   }
   fileUpload(file){
@@ -91,8 +91,8 @@ export class AccountEdit extends React.Component {
 			const formData = new FormData();
 			formData.append('file',file);
 			formData.append('permissions', 'PROTECTED');
-			alert(this.state.userToken);
-			alert(file.name);
+			console.log(this.state.userToken);
+			console.log(file.name);
 
 			const config = {
 				headers: {
@@ -110,20 +110,20 @@ export class AccountEdit extends React.Component {
 
 
     var zipcode = document.getElementById('userzip').value;
-    //alert(zipcode);
+    //console.log(zipcode);
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
     if(isValidZip.test(zipcode)){
       const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
       const url1 = '&key=AIzaSyClrQRnLM322oSpXsNfqOVR5SlwNlXI-aU';
 
-      alert(url+zipcode+url1);
+      console.log(url+zipcode+url1);
       axios.get(url+zipcode+url1)
         .then(response => {
           //('gotzip');
           console.log(response);
           var obj = response.data.results;
-          //alert(obj[0].formatted_address);
+          //console.log(obj[0].formatted_address);
           var res = obj[0].formatted_address.split(' ');
           if(res[1] != undefined){
             document.getElementById('usercity').value = res[0].slice(0,-1);
@@ -160,7 +160,7 @@ export class AccountEdit extends React.Component {
   }
 
   here(){
-    alert("here");
+    console.log("here");
     var name =   document.getElementById('nameofuser').value ;
     var city =  document.getElementById('usercity').value;
     var state =  document.getElementById('userstate').value;
@@ -192,13 +192,13 @@ export class AccountEdit extends React.Component {
 
       axios.put(url + '/user/' + this.state.userId,user,config)
       .then(response => {
-          alert('Account updated!');
+          console.log('Account updated!');
           console.log(response);
           location.reload();
       });
     })
     .catch(function(error) {
-      alert('error!');
+      console.log('error!');
       console.log(error);
     });
 
@@ -237,8 +237,8 @@ export class AccountEdit extends React.Component {
 
 */}
       <div class="col-md-9 personal-info">
-        {/*<div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a>
+        {/*<div class="console.log console.log-info console.log-dismissable">
+          <a class="panel-close close" data-dismiss="console.log">×</a>
           <i class="fa fa-coffee"></i>
           <strong>only image files accepted! </strong>
         </div> */}

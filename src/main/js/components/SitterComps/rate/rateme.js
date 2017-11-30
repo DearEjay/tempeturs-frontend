@@ -34,7 +34,7 @@ export class RateMe extends React.Component {
         //       this.setState({user:response.data.data});
         //     })
         //     .catch(function(error) {
-        //       alert("error!");
+        //       console.log("error!");
         //       console.log(error);
         //     });
     }
@@ -83,8 +83,8 @@ export class RateMe extends React.Component {
 
         var num = this.state.val;
         var comments = document.getElementById("comments").value;
-        alert(num);
-        alert(comments);
+        console.log(num);
+        console.log(comments);
 
         // Body: {
         //     "stars":1,
@@ -105,21 +105,25 @@ export class RateMe extends React.Component {
           };
 
           const url = "https://group-3-tempeturs-backend.herokuapp.com/api";
-
+          console.log(config);
         // GET THE USER ID OF THE PROFILE YOU'RE ON
           axios
             .post(url + "/user/" + this.getCookie('otherid') + "/ratings/", rating, config)
             .then(response => {
                 console.log("successfully added a rating");
               console.log(response);
+              this.close();
+              location.reload();
             })
             .catch(function(error) {
-              alert("error!");
+              console.log("error!");
               console.log(error);
+              alert('You have already rated this sitter!\n');
+              location.reload();
+
             });
 
-        this.close();
-        location.reload();
+
     }
 
 	render() {

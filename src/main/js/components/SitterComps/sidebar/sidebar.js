@@ -24,7 +24,7 @@ export class Sider extends React.Component {
       this.setState({classification: response.data.data.classification});
     })
     .catch(function(error) {
-      alert('sidebar error!');
+      console.log('sidebar error!');
       console.log(error);
     });
 
@@ -84,7 +84,7 @@ export class Sider extends React.Component {
                 <li >
                     <a href='#/sitter/dashboard'><i className='fa fa-rss fa-2x'></i><label><center>News Feed</center></label></a>
                 </li>
-                
+
                 {calendercontent}
                 {searchsittercontent}
                 </ul>

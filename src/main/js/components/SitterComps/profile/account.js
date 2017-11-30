@@ -33,8 +33,8 @@ export class Account extends React.Component {
     };
 
     const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
-    alert(this.state.userId);
-    alert(this.state.userToken);
+    console.log(this.state.userId);
+    console.log(this.state.userToken);
 
     axios.get(url + '/user/' + this.state.userId, config)
     .then(response => {
@@ -66,7 +66,7 @@ export class Account extends React.Component {
 
       })
       .catch(function(error) {
-        alert('error!');
+        console.log('error!');
         console.log(error);
       });
 
@@ -76,7 +76,7 @@ export class Account extends React.Component {
 
     })
     .catch(function(error) {
-      alert('error! in account.js');
+      console.log('error! in account.js');
       console.log("error in account.js");
       console.log(error);
     });

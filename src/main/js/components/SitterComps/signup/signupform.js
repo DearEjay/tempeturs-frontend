@@ -35,25 +35,25 @@ export class Signupform extends React.Component {
   success: function(result, success) {*/
 
     var zipcode = document.getElementById('userzip').value;
-    //alert(zipcode);
+    //console.log(zipcode);
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
     if(isValidZip.test(zipcode)){
       const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
       const url1 = '&sensor=true';
-      //alert(url+zipcode+url1);
+      //console.log(url+zipcode+url1);
       axios.get(url+zipcode+url1)
         .then(response => {
           //('gotzip');
           console.log(response);
           var obj = response.data.results;
-          //alert(obj[0].formatted_address);
+          //console.log(obj[0].formatted_address);
           var res = obj[0].formatted_address.split(' ');
           document.getElementById('usercity').value = res[0].slice(0,-1);
           document.getElementById('userstate').value =  res[1];
         })
         .catch(function(error) {
-          alert('Not a valid zipcode!');
+          console.log('Not a valid zipcode!');
           console.log(error);
         });
     }
@@ -68,7 +68,7 @@ export class Signupform extends React.Component {
 
 
   here() {
-    //alert('here');
+    //console.log('here');
     // Storing Field Values In Variables
     var firstname = document.getElementById('first').value;
     var lastname = document.getElementById('last').value;
@@ -87,17 +87,17 @@ export class Signupform extends React.Component {
     var classification ='';
     var userId;
     var token;
-    //alert (firstname);
-    //alert (lastname);
-    //alert (email);
-    //alert (password);
+    //console.log (firstname);
+    //console.log (lastname);
+    //console.log (email);
+    //console.log (password);
     // Regular Expression For Email
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // Conditions
       if (re.test(email)) {
-        //alert('regex matched');
+        //console.log('regex matched');
         if (document.getElementById('owner').checked || document.getElementById('sitter').checked) {
-            //alert('Something Checked!');
+            //console.log('Something Checked!');
             var fullname =  firstname + ' ' + lastname;
 
 
@@ -106,8 +106,8 @@ export class Signupform extends React.Component {
             }else{
                classification = 'SITTER';
             }
-              //alert (fullname);
-              //alert (classification);
+              //console.log (fullname);
+              //console.log (classification);
 
 
             const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
@@ -159,7 +159,7 @@ export class Signupform extends React.Component {
              .then(function (response) {
                   userId = response.data.data;
 
-                  alert('ID: ' + userId );
+                  console.log('ID: ' + userId );
                   var auth = {
                      'email': email,
                      'password': password
@@ -169,7 +169,7 @@ export class Signupform extends React.Component {
              })
              .then((response) => {
                  token = response.data.data.token;
-                 alert(token);
+                 console.log(token);
 
                  var d = new Date();
                  d.setTime(d.getTime() + (1*24*60*60*1000));
@@ -185,16 +185,16 @@ export class Signupform extends React.Component {
                  window.location.replace('#/sitter/dashboard');
              })
              .catch(function (error) {
-                 alert('database error');
-                 alert(error);
+                 console.log('database error');
+                 console.log(error);
              });
 
         }else{
-          alert('Nothing Checked!');
+          console.log('Nothing Checked!');
         } // end of if statement
       }// end of if statement
      else{
-        Window.alert('test error');
+        Window.console.log('test error');
         return false;
     } // end of else
   }//end of function
