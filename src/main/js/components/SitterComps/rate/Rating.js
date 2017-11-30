@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Modal, Panel, Image } from 'react-bootstrap';
+import { Thumbnail, Button, Modal, Panel, Image } from 'react-bootstrap';
 
-export class Pet extends React.Component {
+import Rater from 'react-rater';
+
+export class Rating extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -31,14 +33,13 @@ export class Pet extends React.Component {
 	}
 
 	render() {
-		const imageUrl= this.props.image + '?token=' + this.state.userToken; 
+        const comments = this.props.comments;
 		return (
 			<div>
-			<center><Image src={imageUrl} responsive /></center>
-			<center><h3>{this.props.name}</h3>
-			<p>A {this.props.age} year old {this.props.sex} {this.props.type}.</p>
-
-			</center>
+                <Rater interactive={false} total={5} rating={this.props.stars} />
+                <br />
+				<b>Comments:</b> {comments}
+				<br/><br/>
 			</div>
 
 		);

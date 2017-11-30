@@ -5,9 +5,9 @@ import { NavBar } from 'js/components/SitterComps/navbar/navbar.js';
 import { Sider } from 'js/components/SitterComps/sidebar/sidebar.js';
 import { StatusForm } from 'js/components/SitterComps/main/statusform.js';
 import { PetList } from 'js/components/PetList.js';
-import { NotificationList } from 'js/components/SitterComps/notifications/NotificationList.js';
+import { Account } from 'js/components/SitterComps/profile/account.js';
 
-export class Layout extends React.Component {
+export class ProfileLayout extends React.Component {
     render(){
         return (
             <div className="wrapper">
@@ -17,18 +17,20 @@ export class Layout extends React.Component {
 
                               < Sider />
 
+
+
                               <Grid>
                               < br/>< br/>< br/>< br/>
                               <Row middle="xs">
                               <Col md={6} offset={{ md: 3 }}>
-                              < StatusForm />
+                              < Account />
                               </Col>
-                              <Col className="two"xs={6} md={4}>
-                              <NotificationList/>
-                              <br />
-                              <PetList/>
-                              </Col>
-                              </Row></Grid>
+                              <Col className="two"xs={6} md={4}><PetList/></Col>
+
+                              </Row>
+                          
+                              </Grid>
+
 
                         {this.props.content}
                     </div>

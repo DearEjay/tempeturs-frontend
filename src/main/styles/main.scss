@@ -73,7 +73,7 @@ div.ejay{
     text-align: left;
 }
 .navbar-static-top {
-    background-color: #2b5386;
+    background-color: #363537;
     color: #fff;
 }
 .sidebar-link {
@@ -118,7 +118,7 @@ hr { border-color: #dedede }
 .divider { margin-top: 32px }
 .navbar-blue {
     border-width: 0;
-    background-color: #3B5999;
+    background-color: #363537;
     color: #ffffff;
     font-family: arial, sans-serif;
     top: 0;
@@ -127,7 +127,7 @@ hr { border-color: #dedede }
 }
 .navbar-blue li > a,
 .navbar-toggle { color: #efefef }
-.navbar-blue .dropdown-menu li a { color: #2A4888 }
+.navbar-blue .dropdown-menu li a { color: black }
 .navbar-blue .dropdown-menu li > a { padding-left: 30px }
 .navbar-blue li > a:hover,
 .navbar-blue li > a:focus,
@@ -135,7 +135,7 @@ hr { border-color: #dedede }
 .navbar-blue .open > a,
 .navbar-blue .open > a:hover,
 .navbar-blue .open > a:focus {
-    background-color: #2A4888;
+    background-color: #363537;
     color: #fff;
 }
 
@@ -178,7 +178,7 @@ hr { border-color: #dedede }
     display: block;
     padding: 3px;
     background-color: #fff;
-    color: #3B5999;
+    color: #363537;
     height: 28px;
     width: 28px;
     margin: 9px;
@@ -317,7 +317,7 @@ small.text-muted { font-family: courier, courier-new, monospace }
     font-size: 300%;
     color: #fff;
     text-align: left;
-    background-color: #2b5386;
+    background-color: #363537;
     clear: both;
 }
 .message {
@@ -547,29 +547,25 @@ small.text-muted { font-family: courier, courier-new, monospace }
 
 .petlist {
     align-content: center;
-    background-color: #f3e1d8;
-
-    overflow: auto;
-    height: 500px;
-    padding: .5rem;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
+    overflow-y: scroll;
+    height:400px;
 }
 
-.petlist::-webkit-scrollbar {
-    display: none;
+.notificationlist {
+    align-content: center;
+    overflow-y: scroll;
+    height:400px;
 }
 
-.menuicon {
-    height: 40px;
-    width: 40px;
+#notificationdismiss {
+    font-style: italic;
+    color: gray;
 }
 
 .one {
     background-color: yellow;
 }
 
-/******************* stuff annie is doing *********************/
 
 .star {
     cursor: pointer;
@@ -594,4 +590,85 @@ small.text-muted { font-family: courier, courier-new, monospace }
   .star.selected {
   background-color: red;
   }
-  
+
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .filter {
+    margin: 50px auto;
+    width: 70%;
+  }
+
+  .filter-menu {
+    text-align: center;
+  }
+
+  .filter-results {
+    margin-top: 30px;
+  }
+
+  .blocks > * {
+    animation: flyIn 0.5s linear;
+    border: 1px solid #000000;
+    display: inline-block;
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+
+  .blocks_3up > * {
+    width: 33.333333%;
+  }
+
+  .feature {
+    padding: 20px 5px;
+    text-align: center;
+    transition: all 0.3s linear;
+  }
+
+  .feature:hover {
+    background: #363537;
+    color: white;
+  }
+
+  .feature-bd,
+  .feature-ft {
+    margin-top: 20px;
+  }
+
+  @-webkit-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+     @-moz-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+       @-o-keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+          @keyframes flyIn { from { opacity:0;
+  transform: translateY(50%);} to { opacity:1; transform: translateY(0); }  }
+
+
+  .react-rater {
+    display: inline-block;
+    line-height: normal; }
+    .react-rater > * {
+      display: inline-block; }
+
+  .react-rater-star {
+    cursor: pointer;
+    color: #ccc;
+    position: relative; }
+    .react-rater-star.will-be-active {
+      color: #666; }
+    .react-rater-star.is-active {
+      color: #000; }
+    .react-rater-star.is-active-half:before {
+      color: #000;
+      content: '\2605';
+      position: absolute;
+      left: 0;
+      width: 50%;
+      overflow: hidden; }
+    .react-rater-star.is-disabled {
+      cursor: default; }
