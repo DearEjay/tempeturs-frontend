@@ -60,7 +60,7 @@ export class Account extends React.Component {
         this.setState({ratings:response.data.data});
         console.log(this.state.ratings);
 
-        this.setState({userContent:<User key={this.state.userId} type='self' name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} ratings={this.state.ratings} />});
+        this.setState({userContent:<User key={this.state.userId} userId={this.state.userId} type='self' name={this.state.name} image={this.state.image}  rate={this.state.rate} classification={this.state.classification} ratings={this.state.ratings} />});
         console.log(this.state.userContent);
 
 
