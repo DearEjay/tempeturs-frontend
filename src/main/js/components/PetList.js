@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Pet } from "js/components/Pet";
 import { Thumbnail, Button, Modal, Panel, Image } from "react-bootstrap";
 import axios, { post } from "axios";
-import axiosFileupload from "axios-fileupload";
 
 export class PetList extends React.Component {
 
