@@ -132,6 +132,8 @@ export class Notification extends React.Component {
             console.log(error);
         });
 
+        
+
         this.setState({accepted:true});
     }
 
