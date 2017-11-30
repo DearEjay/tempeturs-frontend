@@ -166,10 +166,9 @@ export class AccountEdit extends React.Component {
     var state =  document.getElementById('userstate').value;
     var zipcode = document.getElementById('userzip').value;
     var classification = document.getElementById('classificationtype').value;
-    var email = document.getElementById('useremail').value;
     var rate = document.getElementById('userrate').value;
 
-    alert(name + ' ' + city + ' ' + state + ' ' + zipcode + ' ' + email + ' ' + classification);
+    console.log(name + ' ' + city + ' ' + state + ' ' + zipcode + ' '  + ' ' + classification);
 
     var user = {};
     var config = {
@@ -187,8 +186,7 @@ export class AccountEdit extends React.Component {
       user.address.state = state;
       user.address.zipcode = zipcode;
       user.classification = classification;
-      user.email = email;
-      user.rate = rate; 
+      user.rate = rate;
 
       console.log(user);
 
@@ -292,12 +290,6 @@ export class AccountEdit extends React.Component {
           </div>
 
 
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input class="form-control" id='useremail' type="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
-            </div>
-          </div>
 
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
