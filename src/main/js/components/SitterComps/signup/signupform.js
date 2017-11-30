@@ -154,21 +154,12 @@ export class Signupform extends React.Component {
              };
            }
 
-
              axios.post(url+'/user/',user)
              .then(function (response) {
-                  userId = response.data.data;
+               console.log(response);
+                userId = response.data.data.id;
 
-                  console.log('ID: ' + userId );
-                  var auth = {
-                     'email': email,
-                     'password': password
-                  };
-
-                  return axios.post(url+'/user/login/',auth);
-             })
-             .then((response) => {
-                 token = response.data.data.token;
+                token = response.data.data.token;
                  console.log(token);
 
                  var d = new Date();
@@ -185,7 +176,7 @@ export class Signupform extends React.Component {
                  window.location.replace('#/sitter/dashboard');
              })
              .catch(function (error) {
-                 console.log('database error');
+                 console.log('authentication error');
                  console.log(error);
              });
 
@@ -194,7 +185,7 @@ export class Signupform extends React.Component {
         } // end of if statement
       }// end of if statement
      else{
-        Window.console.log('test error');
+        console.log('test error');
         return false;
     } // end of else
   }//end of function

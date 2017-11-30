@@ -27,13 +27,13 @@ export class NotificationList extends React.Component {
     axios
       .get(url + "/user/" + this.state.userId + "/notifications/", config)
       .then(response => {
-        alert("got the notification list for this user");
+        console.log("got the notification list for this user");
         console.log("got the notification list for this user");
         console.log(response);
         this.setState({notifications:response.data.data});
       })
       .catch(function(error) {
-        alert("error! in notification list");
+        console.log("error! in notification list");
         console.log(error);
       });
   }
@@ -64,12 +64,12 @@ export class NotificationList extends React.Component {
       axios
       .delete(url + "/user/" + this.state.userId + "/notifications/", config)
       .then(response => {
-        alert("notifications cleared");
+        console.log("notifications cleared");
         console.log(response);
         location.reload();
       })
       .catch(function(error) {
-        alert("error! in notification list");
+        console.log("error! in notification list");
         console.log(error);
       });
   }

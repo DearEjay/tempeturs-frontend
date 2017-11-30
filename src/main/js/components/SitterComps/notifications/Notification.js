@@ -50,13 +50,13 @@ export class Notification extends React.Component {
                 this.setState({bookingname:response.data.data.name});
             })
             .catch(function(error) {
-                alert("error! in notification (get booking, get user)");
+                console.log("error! in notification (get booking, get user)");
                 console.log("error! in notification (get booking, get user)");
                 console.log(error);
             });
         })
         .catch(function(error) {
-           alert("error! in notification (get booking)");
+           console.log("error! in notification (get booking)");
            console.log(error);
         });
 
@@ -94,10 +94,10 @@ export class Notification extends React.Component {
         .then(response => {
             console.log('deleted the notification');
             console.log(response);
-            location.reload();
+            window.location = '#/sitter/user/profile';
         })
         .catch(function(error) {
-          alert("error! in notification");
+          console.log("error! in notification");
           console.log(error);
         });
 
@@ -124,11 +124,11 @@ export class Notification extends React.Component {
         axios
         .put(url+'/user/'+this.state.userId+'/bookings/'+booking.id, booking, config)
         .then(response => {
-            alert('the booking was accepted');         
+            console.log('the booking was accepted');         
             console.log(response);           
         })
         .catch(function(error){
-            alert('error! in notification -> put booking');
+            console.log('error! in notification -> put booking');
             console.log(error);
         });
 
@@ -166,10 +166,10 @@ export class Notification extends React.Component {
           axios
           .put(url+'/user/'+this.state.userId+'/bookings/'+booking.id, booking, config)
           .then(response => {
-              alert('the booking was cancelled');              
+              console.log('the booking was cancelled');              
           })
           .catch(function(error){
-              alert('error! in notification -> put booking');
+              console.log('error! in notification -> put booking');
               console.log(error);
           });
 
@@ -178,11 +178,11 @@ export class Notification extends React.Component {
           .post(url + "/user/" + this.state.userId + "/ratings/", rating, config)
           .then(response => {
               console.log("successfully added a rating");
-              alert("successfully added a rating");
+              console.log("successfully added a rating");
               console.log(response);              
           })
           .catch(function(error) {
-              alert("error! in notification -> post cancel rating");
+              console.log("error! in notification -> post cancel rating");
               console.log(error);
           });    
           
@@ -195,7 +195,7 @@ export class Notification extends React.Component {
               
           })
           .catch(function(error) {
-              alert("error! in notification");
+              console.log("error! in notification");
               console.log(error);
           });
     

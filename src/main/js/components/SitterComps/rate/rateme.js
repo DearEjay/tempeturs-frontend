@@ -118,7 +118,7 @@ export class RateMe extends React.Component {
             .catch(function(error) {
               console.log("error!");
               console.log(error);
-              alert('You have already rated this sitter!\n');
+              console.log('You have already rated this sitter!\n');
               location.reload();
 
             });
