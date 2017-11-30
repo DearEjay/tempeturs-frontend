@@ -5,7 +5,7 @@ image: node:latest
 
 # Build first, then deploy if commit was to master
 stages:
-  - build
+ # - build
   - deploy
 
 # This folder is cached between builds
