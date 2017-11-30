@@ -26,14 +26,14 @@ export class NavBar extends React.Component {
 
     axios.get(url+'/user/'+userId, config)
     .then((response) => {
-        //alert('success');
+        //console.log('success');
         this.setState({userName:  response.data.data.name});
-        //alert('Name:' + this.state.userName);
-        //alert(typeof this.state.userName);
+        //console.log('Name:' + this.state.userName);
+        //console.log(typeof this.state.userName);
         console.log(response);
     })
     .catch(function (error) {
-        alert('errors');
+        console.log('errors');
         console.log(error);
     });
 

@@ -31,7 +31,7 @@ export class RatingList extends React.Component {
         this.setState({ratings:response.data.data});
       })
       .catch(function(error) {
-        alert("error! in rating list");
+        console.log("error! in rating list");
         console.log(error);
       });
   }

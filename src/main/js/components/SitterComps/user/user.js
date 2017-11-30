@@ -34,16 +34,16 @@ export class User extends React.Component {
       var ratings = [];
       ratings = this.props.ratings;
       console.log(ratings);
-      alert('length ' + ratings.length);
+      console.log('length ' + ratings.length);
       this.ret = 0;
       for(var i = 0; i < ratings.length; i++){
         this.ret += ratings[i].stars;
       }
-      alert(this.ret);
+      console.log(this.ret);
       if(ratings.length != 0){
         this.ret = (this.ret/ratings.length).toFixed(2);
       }
-      alert(this.ret);
+      console.log(this.ret);
 
       console.log('average rating'+ this.ret);
       console.log(this.props.ratings);

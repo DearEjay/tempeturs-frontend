@@ -36,21 +36,25 @@ export class OtherProfileLayout extends React.Component {
       };
 
       const url = 'https://group-3-tempeturs-backend.herokuapp.com/api';
-
-      alert('otherid ');
-      alert(this.state.userId);
-      alert(this.state.userToken);
+      console.log('otherid ');
+      console.log(this.state.userId);
+      console.log(this.state.userToken);
 
       axios.get(url + '/user/' + this.state.userId, config)
       .then(response => {
           console.log('hello');
           console.log(response);
         this.setState({availability:response.data.data.availability.unavailableDays});
-        alert('availability for other account success');
+        console.log('availability for other account success');
+
+        var d = new Date();
+        d.setTime(d.getTime() + (1*24*60*60*1000));
+        var expires = 'expires=' + d.toGMTString();
+        document.cookie = 'sitterschedule' + '=' + response.data.data.availability.unavailableDays + ';' + expires;
 
       })
       .catch(function(error) {
-        alert('error! in other profile layout');
+        console.log('error!');
         console.log(error);
       });
     }

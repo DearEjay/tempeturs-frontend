@@ -37,7 +37,7 @@ export class Aval extends React.Component {
 
     })
     .catch(function(error) {
-      alert('error!');
+      console.log('error!');
       console.log(error);
     });
 
@@ -75,12 +75,12 @@ export class Aval extends React.Component {
   here(){
     var start = new Date(document.getElementById('startdate').value);
     var end = new Date(document.getElementById('enddate').value );
-    //alert(start );
-    //alert(end);
+    //console.log(start );
+    //console.log(end);
     var startdate = new Date(start.getTime() + Math.abs(start.getTimezoneOffset()*60000));
     var enddate = new Date(end.getTime() + Math.abs(end.getTimezoneOffset()*60000));
-    //alert(startdate);
-    //alert(enddate);
+    //console.log(startdate);
+    //console.log(enddate);
     var dateArray = new Array();
     var currentDate = startdate;
     while (currentDate <= enddate) {
@@ -119,14 +119,14 @@ export class Aval extends React.Component {
           location.reload();
       })
       .catch(function(error) {
-          alert('error!');
+          console.log('error!');
           console.log(error);
       });
 
 
     })
     .catch(function(error) {
-      alert('getting user info error!');
+      console.log('getting user info error!');
       console.log(error);
     });
   }

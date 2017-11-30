@@ -29,9 +29,9 @@ export class Header extends React.Component {
     .then((response) => {
 
       var token = response.data.data.token;
-      alert(token);
+      console.log(token);
       var userId = response.data.data.id;
-      alert(userId);
+      console.log(userId);
 
       var d = new Date();
       d.setTime(d.getTime() + (1*24*60*60*1000));
@@ -50,7 +50,7 @@ export class Header extends React.Component {
       toast.error('Invalid email address or password. Please try again!', {
           position: toast.POSITION.TOP_RIGHT
       });
-      //alert(error);
+      //console.log(error);
     });
 
 
