@@ -24,7 +24,8 @@ div.ejay {
 
 /* Add padding to container elements */
 .container {
-  padding: 16px; }
+  padding: 16px;
+  background-color: #fdfdfd; }
 
 /* Clear floats */
 .clearfix::after {
@@ -350,7 +351,7 @@ small.text-muted {
   font-size: 300%;
   color: #fff;
   text-align: left;
-  background-color: #363537;
+  background-color: #1C222C;
   clear: both; }
 
 .message {
