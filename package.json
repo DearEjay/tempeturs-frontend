@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "template project for react",
   "main": "webpack.config.js",
-  "engines": {
-    "node": "9.1.0"
-  },
   "scripts": {
     "dev": "cross-env webpack-dev-server --env dev",
     "test": "cross-env webpack --env test && cross-env jest",
