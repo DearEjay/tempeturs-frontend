@@ -8,7 +8,6 @@
     "test": "cross-env webpack --env test && cross-env jest",
     "lint": "cross-env ./node_modules/.bin/eslint src/main/js/",
     "build": "cross-env webpack --progress --colors --env build",
-    "heroku-postbuild": "cross-env webpack -p",
     "build-release": "cross-env webpack -p --colors --env release",
     
     "serve-prod": "NODE_ENV=production node server.js",
