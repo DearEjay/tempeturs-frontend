@@ -61,7 +61,7 @@ export class Header extends React.Component {
       <div>
       <span className="navbar-react"><i className="fa fa-facebook"></i>
 
-      <ul><img src="http://i66.tinypic.com/347cfft.png" width="300" height="60"/></ul>
+      <ul><img src="http://i64.tinypic.com/4ugvnk.png" width="300" height="60"/></ul>
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form id="signin" className="navbar-form navbar-right" role="form">
 

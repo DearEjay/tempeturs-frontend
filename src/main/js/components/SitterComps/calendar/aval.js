@@ -134,6 +134,7 @@ export class Aval extends React.Component {
   render(){
     return (
       <div>
+      <center><h2>Please enter your unavailable days.</h2></center>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <label><b>Date Start</b></label>
       <input type="date" placeholder="Start Date" id="startdate" required/>

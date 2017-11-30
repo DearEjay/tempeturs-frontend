@@ -24,7 +24,7 @@ export class Layout0 extends React.Component {
                               <Col md={6} offset={{ md: 3 }}>
                               < Aval />
                               </Col>
-                              <Col className="two"xs={6} md={4}>< TodoApp /></Col>
+                              <Col className="two"xs={6} md={4}></Col>
                               </Row></Grid>
 
                         {this.props.content}

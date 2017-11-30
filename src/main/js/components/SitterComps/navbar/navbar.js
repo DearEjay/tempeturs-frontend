@@ -79,7 +79,7 @@ export class NavBar extends React.Component {
 
                 <ul className="nav navbar-nav">
                     <li>
-                        <a href="#/sitter/dashboard"><i className="fa fa-home"></i>< img src="http://i66.tinypic.com/347cfft.png" width="300" height="60"/></a>
+                        <a href="#/sitter/dashboard"><i className="fa fa-home"></i>< img src="http://i64.tinypic.com/4ugvnk.png" width="300" height="60"/></a>
                     </li>
                 </ul>
 
