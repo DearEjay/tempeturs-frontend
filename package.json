@@ -9,7 +9,7 @@
     "lint": "cross-env ./node_modules/.bin/eslint src/main/js/",
     "build": "cross-env webpack --progress --colors --env build",
     "build-release": "cross-env webpack -p --progress --colors --env release",
-    "heroku-postbuild": "cross-env webpack -p --progress --colors --env release",
+    
     "serve-prod": "NODE_ENV=production node server.js",
     "watch": "webpack --watch"
   },
