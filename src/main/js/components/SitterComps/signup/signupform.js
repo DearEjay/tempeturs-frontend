@@ -39,7 +39,7 @@ export class Signupform extends React.Component {
     var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
     if(isValidZip.test(zipcode)){
-      const url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
+      const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
       const url1 = '&sensor=true';
       //console.log(url+zipcode+url1);
       axios.get(url+zipcode+url1)
