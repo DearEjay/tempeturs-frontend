@@ -16,6 +16,9 @@
     "serve-prod": "NODE_ENV=production node server.js",
     "watch": "webpack --watch"
   },
+  "engines": {
+    "node": "9.1.0"
+  },
   "jest": {
     "roots": [
       "<rootDir>/build/tests"
@@ -72,6 +75,7 @@
     "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
     "bootstrap": "4.0.0-beta",
+    "cross-env": "^3.2.4",
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
