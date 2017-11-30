@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "template project for react",
   "main": "webpack.config.js",
+  "engines": {
+    "node": "9.1.0"
+  },
   "scripts": {
     "dev": "cross-env webpack-dev-server --env dev",
     "test": "cross-env webpack --env test && cross-env jest",
@@ -54,7 +57,7 @@
     "html-webpack-plugin": "^2.30.1",
     "install": "^0.8.7",
     "jest": "^19.0.2",
-    "node-sass": "^4.6.1",
+    "node-sass": "^4.5.2",
     "postcss-loader": "^1.2.2",
     "precss": "^1.4.0",
     "react-addons-test-utils": "^15.6.2",
@@ -83,22 +86,16 @@
     "react-date-range": "^0.9.4",
     "react-dom": "^15.6.2",
     "react-draggable": "^2.2.6",
-    "react-file-input": "^0.2.5",
     "react-grid-layout": "^0.15.3",
     "react-hot-loader": "^3.0.0",
     "react-icons": "^2.2.7",
     "react-images-upload": "^1.1.1",
-    "react-notification-system-2": "^5.0.2",
-    "react-rater": "^0.4.7",
+    "react-moment": "^0.6.5",
     "react-redux": "^5.0.2",
     "react-router-dom": "^4.1.2",
     "react-sidebar": "^2.3.2",
-    "react-toastify": "^3.0.0",
-    "reapop": "^1.1.4",
-    "reapop-theme-wybo": "^0.4.1",
     "redux": "^3.6.0",
     "redux-form": "^6.8.0",
-    "redux-thunk": "^2.2.0",
-    "save": "^2.3.1"
+    "redux-thunk": "^2.2.0"
   }
 }
