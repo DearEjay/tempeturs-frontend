@@ -6,7 +6,6 @@ import { Sider } from 'js/components/SitterComps/sidebar/sidebar.js';
 import { StatusForm } from 'js/components/SitterComps/main/statusform.js';
 import { PetList } from 'js/components/PetList.js';
 import { Aval } from 'js/components/SitterComps/calendar/aval.js';
-import { TodoApp } from 'js/components/SitterComps/todo/todo.js';
 
 export class Layout0 extends React.Component {
     render(){
