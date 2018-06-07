@@ -1,0 +1,10 @@
+npm WARN react-addons-test-utils@15.6.2 requires a peer of react-dom@^15.4.2 but none is installed. You must install peer dependencies yourself.
+npm WARN react-booking-calendar@1.0.3 requires a peer of react@15.x but none is installed. You must install peer dependencies yourself.
+npm WARN react-dom@16.3.2 requires a peer of react@^16.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-router@4.2.0 requires a peer of react@>=15 but none is installed. You must install peer dependencies yourself.
+npm WARN react-router-dom@4.2.2 requires a peer of react@>=15 but none is installed. You must install peer dependencies yourself.
+npm WARN react-toastify@4.0.1 requires a peer of react@>=15.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-transition-group@2.3.1 requires a peer of react@>=15.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-transition-group@1.2.1 requires a peer of react@^15.0.0 || ^16.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN react-transition-group@1.2.1 requires a peer of react@^15.0.0 || ^16.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN redux-form@6.8.0 requires a peer of react@^15.0.0 but none is installed. You must install peer dependencies yourself.
