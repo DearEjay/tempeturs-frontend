@@ -4,10 +4,6 @@
 ## Screenshots
 ![Landing Page](https://preview.ibb.co/jfnFho/Screen_Shot_2018_06_07_at_1_19_49_PM.png)
 ![User Dashboard](https://preview.ibb.co/d7DXTT/Screen_Shot_2018_06_07_at_1_20_03_PM.png)
- ![Edit Profile](https://preview.ibb.co/g2bVF8/Screen_Shot_2018_06_07_at_1_20_24_PM.png)
- ![Add a Pet](https://preview.ibb.co/dhmmoT/Screen_Shot_2018_06_07_at_1_20_15_PM.png)
- ![Booking A Sitter](https://image.ibb.co/hJ0qF8/Screen_Shot_2018_06_07_at_1_20_40_PM.png)
-
 
 
 
